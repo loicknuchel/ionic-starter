@@ -1,5 +1,12 @@
+app/bower_components/
+.sass-cache/
+.tmp/
+coverage/
 hooks/
 merges/
+node_modules/
 platforms/
 plugins/
-www/bower_components/
+www/
+
+*~
