@@ -8,12 +8,13 @@ This project aims to create a sample project with all boilerplate code & best pr
 
 - `git clone git@github.com:loicknuchel/ionic-boilerplate.git` get code on your laptop
 - `cd ionic-boilerplate` go to project root folder
-- `mkdir platforms` create platforms folder (essential for cordova)
-- `mkdir plugins` create plugins folder (essential for cordova)
-- `cordova platform add android` add android platform to the project
 - `npm install` to install all grunt dependencies
 - `bower install` to install all bower dependencies
 - `grunt serve` to test on your computer
+- `mkdir platforms` create platforms folder (essential for cordova)
+- `mkdir plugins` create plugins folder (essential for cordova)
+- `mkdir www` create www folder (essential for cordova)
+- `cordova platform add android` add android platform to the project
 - `grunt build && cordova run android` to run app on your phone
 
 # Grunt commands
