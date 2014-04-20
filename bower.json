@@ -1,0 +1,29 @@
+{
+  "name": "ionic-boilerplate",
+  "version": "0.0.1",
+  "homepage": "https://github.com/loicknuchel/ionic-boilerplate",
+  "authors": [
+    "Loïc Knuchel <loicknuchel@gmail.com>"
+  ],
+  "description": "A sample ionic app",
+  "main": "www/index.html",
+  "keywords": [
+    "cordova",
+    "ionic",
+    "mobile",
+    "hybrid"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "www/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ionic": "master"
+  }
+}
