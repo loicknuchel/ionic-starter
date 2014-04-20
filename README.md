@@ -31,5 +31,5 @@ This project aims to create a sample project with all boilerplate code & best pr
 
 # Reminder
 
-- `cordova create ionic-boilerplate org.knuchel.ionicboilerplate HelloIonic` : Create cordova app
+- `cordova create ionic-boilerplate com.example.IonicBoilerplate IonicBoilerplate` : Create cordova app
 - `cordova platform add android` : Add android platform

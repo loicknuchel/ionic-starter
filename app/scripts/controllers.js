@@ -1,5 +1,5 @@
 'use strict';
-angular.module('GeneratorIonic.controllers', [])
+angular.module('IonicBoilerplate.controllers', [])
 
 .controller('AppCtrl', function($scope) {
 })
