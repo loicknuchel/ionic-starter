@@ -15,7 +15,7 @@ angular.module('IonicBoilerplate', ['ionic', 'IonicBoilerplate.controllers'])
     .state('app', {
       url: '/app',
       abstract: true,
-      templateUrl: 'templates/menu.html',
+      templateUrl: 'views/menu.html',
       controller: 'AppCtrl'
     })
 
@@ -23,7 +23,7 @@ angular.module('IonicBoilerplate', ['ionic', 'IonicBoilerplate.controllers'])
       url: '/search',
       views: {
         'menuContent' :{
-          templateUrl: 'templates/search.html'
+          templateUrl: 'views/search.html'
         }
       }
     })
@@ -32,7 +32,7 @@ angular.module('IonicBoilerplate', ['ionic', 'IonicBoilerplate.controllers'])
       url: '/browse',
       views: {
         'menuContent' :{
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'views/browse.html'
         }
       }
     })
@@ -40,7 +40,7 @@ angular.module('IonicBoilerplate', ['ionic', 'IonicBoilerplate.controllers'])
       url: '/playlists',
       views: {
         'menuContent' :{
-          templateUrl: 'templates/playlists.html',
+          templateUrl: 'views/playlists.html',
           controller: 'PlaylistsCtrl'
         }
       }
@@ -50,7 +50,7 @@ angular.module('IonicBoilerplate', ['ionic', 'IonicBoilerplate.controllers'])
       url: '/playlists/:playlistId',
       views: {
         'menuContent' :{
-          templateUrl: 'templates/playlist.html',
+          templateUrl: 'views/playlist.html',
           controller: 'PlaylistCtrl'
         }
       }

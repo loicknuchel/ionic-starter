@@ -1,4 +1,5 @@
 app/bower_components/
+app/fonts/
 .sass-cache/
 .tmp/
 coverage/
