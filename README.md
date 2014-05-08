@@ -2,7 +2,10 @@
 
 # Ionic boilerplate
 
-This project aims to create a sample project with all boilerplate code & best practice for hybrid mobile apps using cordova and ionic framework (it's based on [ionic generator](https://github.com/diegonetto/generator-ionic)).
+This project aims to create a sample project with all boilerplate code & best practice for hybrid mobile apps using cordova and ionic framework. I'm not alone doing that, take a look at similar projects :
+
+- [ionic-rocket](https://github.com/yrezgui/ionic-rocket)
+- [generator-ionic](https://github.com/diegonetto/generator-ionic)
 
 # Getting started
 
