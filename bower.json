@@ -5,21 +5,22 @@
   "authors": [
     "Loïc Knuchel <loicknuchel@gmail.com>"
   ],
-  "description": "A sample ionic app",
+  "description": "Start a new ionic project in seconds !",
   "main": "www/index.html",
   "keywords": [
-    "cordova",
     "ionic",
+    "phonegap",
+    "cordova",
+    "html5",
     "mobile",
-    "hybrid"
+    "hybrid",
+    "angularjs"
   ],
   "license": "MIT",
-  "private": true,
   "ignore": [
-    "**/.*",
     "node_modules",
     "bower_components",
-    "www/bower_components",
+    "app/bower_components",
     "test",
     "tests"
   ],
