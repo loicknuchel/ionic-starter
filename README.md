@@ -14,10 +14,12 @@ This project aims to create a sample project with all boilerplate code & best pr
 - `npm install` to install all grunt dependencies
 - `bower install` to install all bower dependencies
 - `grunt serve` to test on your computer
-- `mkdir platforms` create platforms folder (essential for cordova)
-- `mkdir plugins` create plugins folder (essential for cordova)
-- `mkdir www` create www folder (essential for cordova)
+
+Your app is now running to your computer. To run it to your android device :
+
+- `mkdir platforms plugins www` create folders for cordova
 - `cordova platform add android` add android platform to the project
+- `cordova plugin add org.apache.cordova.device org.apache.cordova.console https://github.com/driftyco/ionic-plugins-keyboard` add interesting plugins
 - `grunt build && cordova run android` to run app on your phone
 
 # Grunt commands
@@ -29,11 +31,15 @@ This project aims to create a sample project with all boilerplate code & best pr
 # Versions
 
 - Node v0.10.26 (`node -v`)
-- Cordova 3.4.1-0.1.0 (`cordova -version`)
-- Bower 1.3.2 (`bower -v`)
-- Ionic 1.0.0-beta.1 (see www/bower_components/ionic/release/version.json)
+- Cordova 3.5.0-0.2.4 (`cordova -version`)
+- Bower 1.3.4 (`bower -v`)
+- Ionic 1.0.0-beta.6 (see www/bower_components/ionic/release/version.json)
 
 # Reminder
 
 - `cordova create ionic-boilerplate com.example.IonicBoilerplate IonicBoilerplate` : Create cordova app
 - `cordova platform add android` : Add android platform
+
+org.apache.cordova.device
+org.apache.cordova.console
+https://github.com/driftyco/ionic-plugins-keyboard

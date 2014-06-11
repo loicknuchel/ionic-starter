@@ -24,6 +24,6 @@
     "tests"
   ],
   "dependencies": {
-    "ionic": "v1.0.0-beta.1"
+    "ionic": "1.0.0-beta.6"
   }
 }
