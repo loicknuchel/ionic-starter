@@ -1,6 +1,6 @@
 .swipeablecards {
   background-color: #333;
-  
+
   .swipe-cards {
     position: fixed;
   }
@@ -62,16 +62,16 @@
       vertical-align: middle;
     }
   }
+}
 
-  @-webkit-keyframes bounceIn {
-    0% {
-      -webkit-transform: scale(0,0);
-    }
-    70% {
-      -webkit-transform: scale(1.2,1.2);
-    }
-    100% {
-      -webkit-transform: scale(1,1);
-    }
+@-webkit-keyframes bounceIn {
+  0% {
+    -webkit-transform: scale(0,0);
+  }
+  70% {
+    -webkit-transform: scale(1.2,1.2);
+  }
+  100% {
+    -webkit-transform: scale(1,1);
   }
 }
