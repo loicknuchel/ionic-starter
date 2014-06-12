@@ -38,6 +38,15 @@ angular.module('IonicBoilerplate', ['ngSanitize', 'ngAnimate', 'ngTouch', 'ngCor
       }
     }
   })
+  .state('app.slidebox', {
+    url: '/slidebox',
+    views: {
+      'menuContent' :{
+        templateUrl: 'views/slidebox.html',
+        controller: 'SlideboxCtrl'
+      }
+    }
+  })
   .state('app.swipeablecards', {
     url: '/swipeablecards',
     views: {

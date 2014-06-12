@@ -1,0 +1,20 @@
+@import '_global';
+
+.slidebox {
+  .slider-slide {
+    &:before { @include arrow-left; }
+    &:after { @include arrow-right; }
+    &:first-child:before { content: none; }
+    &:last-child:after { content: none; }
+  }
+  .box {
+    h1 {
+      text-align: center;
+      padding: 200px 0px;
+    }
+    &.blue { background-color: blue; }
+    &.yellow { background-color: yellow; }
+    &.pink { background-color: pink; }
+
+  }
+}

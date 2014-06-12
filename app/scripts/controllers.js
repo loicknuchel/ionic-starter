@@ -5,6 +5,7 @@ angular.module('IonicBoilerplate')
 
   $scope.features = [
     {link: 'actionsheet', name: 'Action Sheet'},
+    {link: 'slidebox', name: 'Slide Box'},
     {link: 'swipeablecards', name: 'Swipeable Cards'},
     {link: 'chat', name: 'Chat'}
   ];
@@ -67,6 +68,16 @@ angular.module('IonicBoilerplate')
         return true;
       }
     });
+  };
+})
+
+.controller('SlideboxCtrl', function($scope, $ionicSlideBoxDelegate){
+  'use strict';
+  $scope.nextSlide = function(){
+    $ionicSlideBoxDelegate.next();
+  };
+  $scope.slideHasChanged = function(index){
+    console.log('slideHasChanged('+index+')');
   };
 })
 
