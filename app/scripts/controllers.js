@@ -3,6 +3,9 @@ angular.module('IonicBoilerplate.controllers', [])
 .controller('AppCtrl', function($scope) {
   'use strict';
 
+  $scope.features = [
+    {link: 'actionsheet', name: 'Action Sheet'}
+  ];
 })
 
 .controller('HomeCtrl', function($scope) {
@@ -11,7 +14,7 @@ angular.module('IonicBoilerplate.controllers', [])
     showDelete: false,
     showReorder: false
   };
-  
+
   $scope.deleteFeatures = function(){
     $scope.state.showDelete = !$scope.state.showDelete;
     $scope.state.showReorder = false;
@@ -35,8 +38,30 @@ angular.module('IonicBoilerplate.controllers', [])
   $scope.onFeatureDelete = function(feature) {
     $scope.features.splice($scope.features.indexOf(feature), 1);
   };
-  
-  $scope.features = [
-    {link: 'aaa', name: 'Slide box'}
-  ];
+})
+
+.controller('ActionsheetCtrl', function($scope, $ionicActionSheet) {
+  'use strict';
+  $scope.showActionsheet = function() {
+    $ionicActionSheet.show({
+      titleText: 'ActionSheet Example',
+      buttons: [
+        { text: 'Share <i class="icon ion-share"></i>' },
+        { text: 'Move <i class="icon ion-arrow-move"></i>' }
+      ],
+      destructiveText: 'Delete',
+      cancelText: 'Cancel',
+      cancel: function() {
+        console.log('CANCELLED');
+      },
+      buttonClicked: function(index){
+        console.log('BUTTON CLICKED', index);
+        return true;
+      },
+      destructiveButtonClicked: function(){
+        console.log('DESTRUCT');
+        return true;
+      }
+    });
+  };
 });

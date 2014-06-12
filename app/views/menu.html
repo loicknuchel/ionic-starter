@@ -8,9 +8,8 @@
     <ion-content>
       <div class="list">
         <div class="item item-divider">Application</div>
-        <a class="item item-icon-left" menu-close ui-sref="app.home">
-          <i class="icon ion-home"></i> Accueil
-        </a>
+        <a class="item item-icon-left" menu-close ui-sref="app.home"><i class="icon ion-home"></i> Accueil</a>
+        <a class="item" menu-close ng-repeat="feature in features" ui-sref="app.{{feature.link}}">{{feature.name}}</a>
       </div>
     </ion-content>
   </ion-side-menu>

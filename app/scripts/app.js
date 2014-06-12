@@ -28,6 +28,15 @@ angular.module('IonicBoilerplate', ['ionic', 'ngSanitize', 'ngAnimate', 'ngTouch
         controller: 'HomeCtrl'
       }
     }
+  })
+  .state('app.actionsheet', {
+    url: '/actionsheet',
+    views: {
+      'menuContent' :{
+        templateUrl: 'views/actionsheet.html',
+        controller: 'ActionsheetCtrl'
+      }
+    }
   });
 });
 
