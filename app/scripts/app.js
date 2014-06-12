@@ -37,6 +37,15 @@ angular.module('IonicBoilerplate', ['ionic', 'ngSanitize', 'ngAnimate', 'ngTouch
         controller: 'ActionsheetCtrl'
       }
     }
+  })
+  .state('app.chat', {
+    url: '/chat',
+    views: {
+      'menuContent' :{
+        templateUrl: 'views/chat.html',
+        controller: 'ChatCtrl'
+      }
+    }
   });
 });
 

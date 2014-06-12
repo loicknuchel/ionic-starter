@@ -1,0 +1,38 @@
+.chat {
+  .messages {
+    margin:0;
+    padding:0;
+    list-style-type:none;
+    li {
+      display:block;
+      float:left;
+      clear:both;
+      max-width:65%;
+      margin:0 0 1rem 0;
+      padding:0;
+      &:nth-child(even) {
+        float:right;
+      }
+      &:nth-child(even) img {
+        float:right;
+      }
+      &:nth-child(even) p {
+        background:#158ffe;
+        color:#fff;
+      }
+    }
+    p {
+      border-radius:.75rem;
+      background:#e6e5eb;
+      color:#383641;
+      padding:.6875rem;
+      margin:0;
+      font-size:.875rem;
+    }
+    img {
+      display:block;
+      max-width:65%;
+      border-radius:.75rem;
+    }
+  }
+}

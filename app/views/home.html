@@ -1,7 +1,6 @@
 <ion-view>
   <ion-header-bar class="bar-positive">
     <div class="buttons">
-      <ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>
       <button menu-toggle="left" class="button button-icon ion-navicon"></button>
       <button class="button button-icon icon ion-ios7-minus-outline" ng-click="deleteFeatures()"></button>
       <h1 class="title">Home</h1>
@@ -11,6 +10,7 @@
   
   <ion-content>
     <h1 class="padding">Feature list</h1>
+    <!-- sample here : http://codepen.io/ionic/pen/JsHjf -->
     <ion-list show-delete="state.showDelete" show-reorder="state.showReorder">
       <ion-item ng-repeat="feature in features" item="feature" ui-sref="app.{{feature.link}}">
         {{feature.name}}
