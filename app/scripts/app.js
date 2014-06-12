@@ -1,4 +1,4 @@
-angular.module('IonicBoilerplate', ['ionic', 'ngSanitize', 'ngAnimate', 'ngTouch', 'ngCordova', 'IonicBoilerplate.controllers'])
+angular.module('IonicBoilerplate', ['ngSanitize', 'ngAnimate', 'ngTouch', 'ngCordova', 'ionic', 'ionic.contrib.ui.cards'])
 
 .run(function($ionicPlatform) {
   'use strict';
@@ -35,6 +35,15 @@ angular.module('IonicBoilerplate', ['ionic', 'ngSanitize', 'ngAnimate', 'ngTouch
       'menuContent' :{
         templateUrl: 'views/actionsheet.html',
         controller: 'ActionsheetCtrl'
+      }
+    }
+  })
+  .state('app.swipeablecards', {
+    url: '/swipeablecards',
+    views: {
+      'menuContent' :{
+        templateUrl: 'views/swipeablecards.html',
+        controller: 'SwipeablecardsCtrl'
       }
     }
   })
