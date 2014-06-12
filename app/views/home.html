@@ -1,11 +1,22 @@
-<ion-view title="Accueil">
-  <ion-nav-bar class="home">
-    <ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>
-  </ion-nav-bar>
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon ion-navicon"></button>
-  </ion-nav-buttons>
-  <ion-content class="padding">
-    <h1>Hello !</h1>
+<ion-view>
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <button class="button button-icon icon ion-ios7-minus-outline" ng-click="deleteFeatures()"></button>
+      <h1 class="title">Home</h1>
+      <button class="button" ng-click="reorderFeatures()">Reorder</button>
+    </div>
+  </ion-header-bar>
+  
+  <ion-content>
+    <h1 class="padding">Feature list</h1>
+    <ion-list show-delete="state.showDelete" show-reorder="state.showReorder">
+      <ion-item ng-repeat="feature in features" item="feature" ui-sref="app.{{feature.link}}">
+        {{feature.name}}
+        <ion-delete-button class="ion-minus-circled" ng-click="onFeatureDelete(feature)"></ion-delete-button>
+        <ion-option-button class="button-assertive" ng-click="edit(feature)">Edit</ion-option-button>
+        <ion-option-button class="button-calm" ng-click="share(feature)">Share</ion-option-button>
+        <ion-reorder-button class="ion-navicon" on-reorder="moveFeature(feature, $fromIndex, $toIndex)"></ion-reorder-button>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
