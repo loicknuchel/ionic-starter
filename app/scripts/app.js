@@ -1,13 +1,4 @@
-angular.module('app', ['ionic', 'ngCordova'])
-
-.run(function($ionicPlatform) {
-  'use strict';
-  $ionicPlatform.ready(function() {
-    if(window.StatusBar) {
-      window.StatusBar.styleDefault();
-    }
-  });
-})
+angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   'use strict';
@@ -65,5 +56,11 @@ angular.module('app', ['ionic', 'ngCordova'])
       }
     }
   });
+})
+
+.constant('Config', Config)
+
+.run(function() {
+  'use strict';
 });
 
