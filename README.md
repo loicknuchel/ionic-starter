@@ -1,6 +1,6 @@
 #### WORK IN PROGRESS
 
-# Ionic boilerplate
+# Ionic starter
 
 This project aims to let you start really quickly a new ionic project by simply cloning this repo. This app comes with an setted up environment, usefull boilerplate code and best practices with ionic.
 Feel free to open an issue to any question or suggestion you could have.
@@ -23,8 +23,8 @@ Tool used :
 
 # Getting started
 
-- `git clone git@github.com:loicknuchel/ionic-boilerplate.git` get code on your laptop
-- `cd ionic-boilerplate` go to project root folder
+- `git clone git@github.com:loicknuchel/ionic-starter.git` get code on your laptop
+- `cd ionic-starter` go to project root folder
 - `npm install` to install all grunt dependencies
 - `bower install` to install all bower dependencies
 - `grunt serve` to test on your computer

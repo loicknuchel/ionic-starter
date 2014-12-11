@@ -1,10 +1,10 @@
-angular.module('IonicBoilerplate', ['ngSanitize', 'ngAnimate', 'ngTouch', 'ngCordova', 'ionic', 'ionic.contrib.ui.cards'])
+angular.module('app', ['ionic', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   'use strict';
   $ionicPlatform.ready(function() {
     if(window.StatusBar) {
-      StatusBar.styleDefault();
+      window.StatusBar.styleDefault();
     }
   });
 })

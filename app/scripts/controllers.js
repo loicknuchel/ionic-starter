@@ -1,4 +1,4 @@
-angular.module('IonicBoilerplate')
+angular.module('app')
 
 .controller('AppCtrl', function($scope){
   'use strict';
@@ -11,7 +11,7 @@ angular.module('IonicBoilerplate')
   ];
 })
 
-.controller('HomeCtrl', function($scope){
+.controller('HomeCtrl', function($scope, $window){
   'use strict';
   // sample here : http://codepen.io/ionic/pen/JsHjf
   $scope.state = {
@@ -29,10 +29,10 @@ angular.module('IonicBoilerplate')
   };
 
   $scope.edit = function(feature){
-    alert('Edit Feature: ' + feature.name);
+    $window.alert('Edit Feature: ' + feature.name);
   };
   $scope.share = function(feature){
-    alert('Share Feature: ' + feature.name);
+    $window.alert('Share Feature: ' + feature.name);
   };
 
   $scope.moveFeature = function(feature, fromIndex, toIndex){

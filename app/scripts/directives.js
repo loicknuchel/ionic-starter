@@ -1,4 +1,4 @@
-angular.module('IonicBoilerplate')
+angular.module('app')
 
 .directive('noScroll', function($document) {
   'use strict';
