@@ -53,10 +53,13 @@ If you use this template project, you might want to rename it. Here are all the 
 # Versions
 
 - Node v0.10.26 (`node -v`)
-- Cordova 3.5.0-0.2.4 (`cordova -version`)
-- Bower 1.3.4 (`bower -v`)
-- Ionic 1.0.0-beta.6 (see www/bower_components/ionic/release/version.json)
+- Cordova 4.1.2 (`cordova -version`)
+- Bower 1.3.11 (`bower -v`)
+- Ionic 1.0.0-beta.13 (see www/bower_components/ionic/release/version.json)
 
-# Reminder
+# TODO
 
-- `cordova create ionic-boilerplate com.example.IonicBoilerplate IonicBoilerplate` : Create cordova app
+- add standard usefull plugins :
+    - org.apache.cordova.splashscreen
+    - https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+    - org.apache.cordova.dialogs
