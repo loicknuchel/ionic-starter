@@ -36,12 +36,6 @@ Your app is now running to your computer. To run it to your android device :
 - `cordova plugin add org.apache.cordova.device org.apache.cordova.console https://github.com/driftyco/ionic-plugins-keyboard` add interesting plugins
 - `grunt build && cordova run android` to run app on your phone
 
-# Grunt commands
-
-- `grunt serve` use it to develop. It will open your project in browser with live realod.
-- `grunt ripple` is an alternative to `grunt serve`. It will open your project in adobe ripple editor with live realod.
-- `grunt build` builds your sources and put them in www/ folder to deploy on your device.
-
 # Personalize
 
 If you use this template project, you might want to rename it. Here are all the place you have to change to do it :
@@ -59,7 +53,15 @@ If you use this template project, you might want to rename it. Here are all the 
 
 # TODO
 
+- plugins added :
+    - org.apache.cordova.device (http://ngcordova.com/docs/plugins/device/)
+    - org.apache.cordova.console
+    - https://github.com/driftyco/ionic-plugins-keyboard
 - add standard usefull plugins :
-    - org.apache.cordova.splashscreen
+    - org.apache.cordova.splashscreen (http://ngcordova.com/docs/plugins/splashscreen/)
     - https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
-    - org.apache.cordova.dialogs
+    - org.apache.cordova.dialogs (http://ngcordova.com/docs/plugins/dialogs/)
+    - de.appplant.cordova.plugin.local-notification (http://ngcordova.com/docs/plugins/localNotification/)
+    - org.apache.cordova.statusbar (http://ngcordova.com/docs/plugins/statusbar/)
+    - https://github.com/pushandplay/cordova-plugin-apprate (http://ngcordova.com/docs/plugins/appRate/)
+    - https://github.com/whiteoctober/cordova-plugin-app-version (http://ngcordova.com/docs/plugins/appVersion/)
