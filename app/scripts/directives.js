@@ -71,7 +71,7 @@ angular.module('app')
 })
 
 // from http://tobiasahlin.com/spinkit/
-.directive('loading', function (){
+.directive('loading', function(){
   'use strict';
   return {
     restrict: 'E',
@@ -79,7 +79,10 @@ angular.module('app')
       color: '@',
       top: '@'
     },
-    template: '<div class="spinner" ng-style="spinnerStyle"><div class="dot1" ng-style="dotStyle"></div><div class="dot2" ng-style="dotStyle"></div></div>',
+    template: '<div class="spinner" ng-style="spinnerStyle">'+
+    '<div class="double-bounce1" ng-style="dotStyle"></div>'+
+    '<div class="double-bounce2" ng-style="dotStyle"></div>'+
+    '</div>',
     link: function(scope, element, attrs){
       scope.dotStyle = {};
       if(scope.color){ scope.dotStyle['background-color'] = scope.color; }

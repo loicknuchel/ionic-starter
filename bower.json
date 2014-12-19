@@ -25,13 +25,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.27",
-    "angular-sanitize": "~1.2.27",
-    "angular-animate": "~1.2.27",
-    "angular-touch": "~1.2.27",
-    "angular-ui-router": "~0.2.10",
-    "ionic": "1.0.0-beta.13",
-    "ngCordova": "0.1.7-alpha",
+    "ionic": "1.0.0-beta.14",
+    "ngCordova": "0.1.8-alpha",
     "font-awesome": "~4.2.0",
     "angular-localforage": "~1.2.2",
     "moment": "~2.8.4",

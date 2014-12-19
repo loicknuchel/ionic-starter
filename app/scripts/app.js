@@ -1,8 +1,27 @@
 angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $provide) {
   'use strict';
-  $urlRouterProvider.otherwise('/app/home');
+  // catch exceptions in angular
+  $provide.decorator('$exceptionHandler', ['$delegate', function($delegate){
+    return function(exception, cause){
+      $delegate(exception, cause);
+
+      var data = {
+        type: 'angular'
+      };
+      if(cause)               { data.cause    = cause;              }
+      if(exception){
+        if(exception.message) { data.message  = exception.message;  }
+        if(exception.name)    { data.name     = exception.name;     }
+        if(exception.stack)   { data.stack    = exception.stack;    }
+      }
+
+      Logger.track('exception', data);
+    };
+  }]);
+  
+  // ParseUtilsProvider.initialize(Config.parse.applicationId, Config.parse.restApiKey);
   
   $stateProvider
   .state('app', {
@@ -19,43 +38,9 @@ angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
         controller: 'HomeCtrl'
       }
     }
-  })
-  .state('app.actionsheet', {
-    url: '/actionsheet',
-    views: {
-      'menuContent' :{
-        templateUrl: 'views/actionsheet.html',
-        controller: 'ActionsheetCtrl'
-      }
-    }
-  })
-  .state('app.slidebox', {
-    url: '/slidebox',
-    views: {
-      'menuContent' :{
-        templateUrl: 'views/slidebox.html',
-        controller: 'SlideboxCtrl'
-      }
-    }
-  })
-  .state('app.swipeablecards', {
-    url: '/swipeablecards',
-    views: {
-      'menuContent' :{
-        templateUrl: 'views/swipeablecards.html',
-        controller: 'SwipeablecardsCtrl'
-      }
-    }
-  })
-  .state('app.chat', {
-    url: '/chat',
-    views: {
-      'menuContent' :{
-        templateUrl: 'views/chat.html',
-        controller: 'ChatCtrl'
-      }
-    }
   });
+  
+  $urlRouterProvider.otherwise('/app/home');
 })
 
 .constant('Config', Config)

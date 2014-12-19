@@ -55,7 +55,7 @@ If you use this template project, you might want to rename it. Here are all the 
 - Node v0.10.26 (`node -v`)
 - Cordova 4.1.2 (`cordova -version`)
 - Bower 1.3.11 (`bower -v`)
-- Ionic 1.0.0-beta.13 (see www/bower_components/ionic/release/version.json)
+- Ionic 1.0.0-beta.14 (see www/bower_components/ionic/release/version.json)
 
 # TODO
 
