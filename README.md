@@ -1,8 +1,6 @@
-#### WORK IN PROGRESS
-
 # Ionic starter
 
-This project aims to let you start really quickly a new ionic project by simply cloning this repo. This app comes with an setted up environment, usefull boilerplate code and best practices with ionic.
+This repo aims to let you start really quickly a new ionic project by simply cloning this repo. This app comes with an setted up environment, usefull boilerplate code and best practices with ionic.
 Feel free to open an issue to any question or suggestion you could have.
 
 I'm not alone trying to achieve that, take a look at similar projects :
@@ -23,25 +21,30 @@ Tool used :
 
 # Getting started
 
-- `git clone git@github.com:loicknuchel/ionic-starter.git` get code on your laptop
-- `cd ionic-starter` go to project root folder
-- `npm install` to install all grunt dependencies
-- `bower install` to install all bower dependencies
-- `grunt serve` to test on your computer
+- `git clone git@github.com:loicknuchel/ionic-starter.git` : get code on your laptop
+- `cd ionic-starter` : go to project root folder
+- `npm install` : install all grunt dependencies
+- `bower install` : to install all bower dependencies
+- `grunt serve` : to test on your computer
+- You're now ready with a shiny livereload :D
 
-Your app is now running to your computer. To run it to your android device :
+To run it to your android device :
 
-- `mkdir platforms plugins www` create folders for cordova
-- `cordova platform add android` add android platform to the project
-- `cordova plugin add org.apache.cordova.device org.apache.cordova.console https://github.com/driftyco/ionic-plugins-keyboard` add interesting plugins
-- `grunt build && cordova run android` to run app on your phone
+- `mkdir platforms plugins www` : create cordova folders
+- `cordova platform add android` : add android platform to the project
+- `cordova plugin add org.apache.cordova.device org.apache.cordova.console https://github.com/driftyco/ionic-plugins-keyboard` : add interesting plugins
+- `grunt build && cordova run android` : build the app and run it on your phone
+
+You have also other grunt commands :
+
+- `grunt test` : run your test suite
 
 # Personalize
 
 If you use this template project, you might want to rename it. Here are all the place you have to change to do it :
 
-- `bower.json`
 - `config.xml`
+- `bower.json`
 - `package.json`
 
 # Versions
