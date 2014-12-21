@@ -4,7 +4,7 @@ angular.module('app')
   'use strict';
 })
 
-.controller('TwittsCtrl', function($scope, $window, $ionicPopover, TwittSrv){
+.controller('TwittsCtrl', function($scope, $window, $ionicPopover, $ionicActionSheet, TwittSrv){
   'use strict';
   var data = {}, fn = {};
   $scope.data = data;
@@ -66,6 +66,27 @@ angular.module('app')
   $scope.$on('$destroy', function() {
     if($scope.twittsPopover){ $scope.twittsPopover.remove(); }
   });
+
+  fn.moreOptions = function(twitt){
+    $ionicActionSheet.show({
+      titleText: 'Options for '+twitt.user+'\'s twitt',
+      buttons: [
+        {text: 'Share <i class="icon ion-share"></i>'}
+      ],
+      buttonClicked: function(index){
+        if(index === 0) { fn.share(twitt);                            }
+        else            { console.log('Unknown button index', index); }
+        return true;
+      },
+      destructiveText: 'Delete',
+      destructiveButtonClicked: function(){
+        $scope.userList.fn.delete(data.twitts, twitt);
+        return true;
+      },
+      cancelText: 'Cancel',
+      cancel: function(){}
+    });
+  };
 })
 
 .controller('TwittCtrl', function($state, $stateParams, $scope, $window, TwittSrv){

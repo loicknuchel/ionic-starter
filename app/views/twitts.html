@@ -12,7 +12,7 @@
   <ion-content>
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="fn.refresh()"></ion-refresher>
     <ion-list show-delete="userList.state.showDelete" show-reorder="userList.state.showReorder">
-      <ion-item class="item-avatar" ng-repeat="twitt in data.twitts" item="twitt" ui-sref="app.twitt({twittId: twitt.id})">
+      <ion-item class="item-avatar" ng-repeat="twitt in data.twitts" item="twitt" ui-sref="app.twitt({twittId: twitt.id})" on-hold="fn.moreOptions(twitt)">
         <img ng-src="{{twitt.avatar}}">
         <h2>{{twitt.user}}</h2>
         <p>{{twitt.content}}</p>
