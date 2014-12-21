@@ -46,5 +46,12 @@ angular.module('app')
   fn.share = function(twitt){
     $window.alert('Share twitt: ' + twitt.content);
   };
+
+  fn.refresh = function(){
+    TwittSrv.getAll(true).then(function(twitts){
+      data.twitts = twitts;
+      $scope.$broadcast('scroll.refreshComplete');
+    });
+  };
 });
 

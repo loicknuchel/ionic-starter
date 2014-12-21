@@ -1,7 +1,7 @@
 angular.module('app')
 
 // This is a dummy service to use in demo...
-.factory('TwittSrv', function($q, Utils){
+.factory('TwittSrv', function($q, $timeout, Utils){
   'use strict';
   var twitts = [
     {id: Utils.createUuid(), user: 'Venkman', avatar: 'http://ionicframework.com/img/docs/venkman.jpg', content: 'Back off, man. I\'m a scientist.'},
@@ -16,10 +16,14 @@ angular.module('app')
 
   var service = {
     getAll: function(addOne){
-      if(addOne){
-        twitts.unshift(createRandomTwitt());
-      }
-      return $q.when(twitts);
+      var defer = $q.defer();
+      $timeout(function(){
+        if(addOne){
+          twitts.unshift(createRandomTwitt());
+        }
+        defer.resolve(twitts);
+      }, 2000);
+      return defer.promise;
     }
   };
 
