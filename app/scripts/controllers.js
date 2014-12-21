@@ -4,9 +4,8 @@ angular.module('app')
   'use strict';
 })
 
-.controller('HomeCtrl', function($scope, $window, TwittSrv, IonicUi){
+.controller('TwittsCtrl', function($scope, $window, $ionicPopover, TwittSrv){
   'use strict';
-  // sample here : http://codepen.io/ionic/pen/JsHjf
   var data = {}, fn = {};
   $scope.data = data;
   $scope.fn = fn;
@@ -56,14 +55,31 @@ angular.module('app')
     });
   };
 
-  IonicUi.initPopover($scope, 'views/partials/twitt-list-popover.html').then(function(popover){
+  $ionicPopover.fromTemplateUrl('views/partials/twitt-list-popover.html', {
+    scope: $scope
+  }).then(function(popover){
     $scope.twittsPopover = popover;
   });
   fn.showOptions = function(event){
     $scope.twittsPopover.show(event);
   };
   $scope.$on('$destroy', function() {
-    $scope.twittsPopover.remove();
+    if($scope.twittsPopover){ $scope.twittsPopover.remove(); }
+  });
+})
+
+.controller('TwittCtrl', function($state, $stateParams, $scope, $window, TwittSrv){
+  'use strict';
+  var twittId = $stateParams.twittId;
+  var data = {};
+  $scope.data = data;
+
+  TwittSrv.get(twittId).then(function(twitt){
+    if(twitt){
+      data.twitt = twitt;
+    } else {
+      $state.go('app.twitts');
+    }
   });
 });
 

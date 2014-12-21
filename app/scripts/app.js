@@ -30,17 +30,26 @@ angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
     templateUrl: 'views/menu.html',
     controller: 'AppCtrl'
   })
-  .state('app.home', {
-    url: '/home',
+  .state('app.twitts', {
+    url: '/twitts',
     views: {
       'menuContent' :{
-        templateUrl: 'views/home.html',
-        controller: 'HomeCtrl'
+        templateUrl: 'views/twitts.html',
+        controller: 'TwittsCtrl'
+      }
+    }
+  })
+  .state('app.twitt', {
+    url: '/twitt/:twittId',
+    views: {
+      'menuContent' :{
+        templateUrl: 'views/twitt.html',
+        controller: 'TwittCtrl'
       }
     }
   });
   
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/app/twitts');
 })
 
 .constant('Config', Config)

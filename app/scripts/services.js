@@ -16,14 +16,17 @@ angular.module('app')
 
   var service = {
     getAll: function(addOne){
-      var defer = $q.defer();
-      $timeout(function(){
+      return asyncTmp(function(){
         if(addOne){
           twitts.unshift(createRandomTwitt());
         }
-        defer.resolve(twitts);
-      }, 2000);
-      return defer.promise;
+        return twitts;
+      });
+    },
+    get: function(id){
+      return asyncTmp(function(){
+        return _.find(twitts, {id: id});
+      });
     }
   };
 
@@ -31,6 +34,14 @@ angular.module('app')
     var newTwitt = angular.copy(twitts[Math.floor(Math.random() * twitts.length)]);
     newTwitt.id = Utils.createUuid();
     return newTwitt;
+  }
+
+  function asyncTmp(fn){
+    var defer = $q.defer();
+    $timeout(function(){
+      defer.resolve(fn());
+    }, 1000);
+    return defer.promise;
   }
 
   return service;
