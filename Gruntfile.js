@@ -57,7 +57,7 @@ module.exports = function(grunt){
           '<%= yeoman.app %>/*.html',
           '<%= yeoman.app %>/views/**/*.html',
           '.tmp/styles/**/*.css',
-          '<%= yeoman.app %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= yeoman.app %>/images/**/*.{png,jpg,jpeg,gif,webp,svg,ico}'
         ]
       }
     },
@@ -214,8 +214,7 @@ module.exports = function(grunt){
           src: [
             '<%= yeoman.dist %>/scripts/**/*.js',
             '<%= yeoman.dist %>/styles/**/*.css',
-            '<%= yeoman.dist %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= yeoman.dist %>/styles/fonts/*'
+            '<%= yeoman.dist %>/images/**/*.{png,jpg,jpeg,gif,webp,svg,ico}'
           ]
         }
       }
@@ -253,7 +252,7 @@ module.exports = function(grunt){
     // The following *-min tasks produce minified files in the dist folder
     cssmin: {
       options: {
-        //noRebase: true,
+        noRebase: true,
         root: '<%= yeoman.app %>'
       }
     },
@@ -347,9 +346,13 @@ module.exports = function(grunt){
       },
       fonts: {
         expand: true,
-        cwd: 'app/bower_components/ionic/release/fonts/',
+        flatten: true,
+        src: [
+          '<%= yeoman.app %>/bower_components/ionic/release/fonts/*',
+          '<%= yeoman.app %>/bower_components/font-awesome/fonts/*'
+        ],
         dest: '<%= yeoman.app %>/fonts/',
-        src: '*'
+        filter: 'isFile'
       },
       vendor: {
         expand: true,
