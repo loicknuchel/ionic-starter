@@ -27,6 +27,16 @@ angular.module('app')
       return asyncTmp(function(){
         return _.find(twitts, {id: id});
       });
+    },
+    save: function(twitt){
+      return asyncTmp(function(){
+        var newTwitt = {};
+        newTwitt.id = Utils.createUuid();
+        newTwitt.user = twitt.user;
+        newTwitt.avatar = 'http://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png';
+        newTwitt.content = twitt.content;
+        twitts.unshift(newTwitt);
+      });
     }
   };
 

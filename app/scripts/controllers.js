@@ -4,9 +4,9 @@ angular.module('app')
   'use strict';
 })
 
-.controller('TwittsCtrl', function($scope, $window, $ionicPopover, $ionicActionSheet, TwittSrv){
+.controller('TwittsCtrl', function($scope, $window, $ionicModal, $ionicPopover, $ionicActionSheet, TwittSrv){
   'use strict';
-  var data = {}, fn = {};
+  var data = {}, fn = {}, ui = {};
   $scope.data = data;
   $scope.fn = fn;
 
@@ -24,12 +24,16 @@ angular.module('app')
       showDelete: function(){
         userListState.showDelete = !userListState.showDelete;
         userListState.showReorder = false;
-        $scope.twittsPopover.hide();
+        ui.twittsPopover.hide();
       },
       showReorder: function(){
         userListState.showDelete = false;
         userListState.showReorder = !userListState.showReorder;
-        $scope.twittsPopover.hide();
+        ui.twittsPopover.hide();
+      },
+      hideAll: function(){
+        userListState.showDelete = false;
+        userListState.showReorder = false;
       },
       delete: function(collection, elt){
         collection.splice(collection.indexOf(elt), 1);
@@ -55,18 +59,6 @@ angular.module('app')
     });
   };
 
-  $ionicPopover.fromTemplateUrl('views/partials/twitt-list-popover.html', {
-    scope: $scope
-  }).then(function(popover){
-    $scope.twittsPopover = popover;
-  });
-  fn.showOptions = function(event){
-    $scope.twittsPopover.show(event);
-  };
-  $scope.$on('$destroy', function() {
-    if($scope.twittsPopover){ $scope.twittsPopover.remove(); }
-  });
-
   fn.moreOptions = function(twitt){
     $ionicActionSheet.show({
       titleText: 'Options for '+twitt.user+'\'s twitt',
@@ -87,6 +79,41 @@ angular.module('app')
       cancel: function(){}
     });
   };
+
+  $ionicPopover.fromTemplateUrl('views/partials/twitts-options-popover.html', {
+    scope: $scope
+  }).then(function(popover){
+    ui.twittsPopover = popover;
+  });
+  fn.showOptions = function(event){
+    ui.twittsPopover.show(event);
+  };
+
+  $ionicModal.fromTemplateUrl('views/partials/send-twitt-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal){
+    ui.sendTwittModal = modal;
+  });
+  fn.writeTwitt = function(){
+    ui.sendTwittModal.show();
+  };
+  fn.sendTwitt = function(form){
+    form.saving = true;
+    TwittSrv.save(form).then(function(){
+      ui.sendTwittModal.hide();
+      form.content = '';
+      form.saving = false;
+    });
+  };
+  fn.cancelSendTwitt = function(){
+    ui.sendTwittModal.hide();
+  };
+
+  $scope.$on('$destroy', function(){
+    if(ui.twittsPopover){ ui.twittsPopover.remove(); }
+    if(ui.sendTwittModal){ ui.sendTwittModal.remove(); }
+  });
 })
 
 .controller('TwittCtrl', function($state, $stateParams, $scope, $window, TwittSrv){

@@ -5,6 +5,7 @@
     </div>
     <h1 class="title">Home</h1>
     <div class="buttons">
+      <button class="button button-icon ion-close-circled" ng-click="userList.fn.hideAll()" ng-show="userList.state.showDelete || userList.state.showReorder"></button>
       <button class="button button-icon ion-more" ng-click="fn.showOptions($event)"></button>
     </div>
   </ion-header-bar>
@@ -24,4 +25,12 @@
     </ion-list>
     <loading ng-show="!data.twitts" top="100px"></loading>
   </ion-content>
+
+  <ion-footer-bar class="item-input-inset" ng-click="fn.writeTwitt()">
+    <label class="item-input-wrapper">
+      <i class="icon ion-chatbubbles placeholder-icon"></i>
+      <input type="text" placeholder="Say something">
+    </label>
+    <button class="button button-clear">Twitt</button>
+  </ion-footer-bar>
 </ion-view>
