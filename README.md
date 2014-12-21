@@ -57,14 +57,14 @@ If you use this template project, you might want to rename it. Here are all the 
 # TODO
 
 - plugins added :
-    - org.apache.cordova.device (http://ngcordova.com/docs/plugins/device/)
+    - org.apache.cordova.device ([ngCordova](http://ngcordova.com/docs/plugins/device/))
     - org.apache.cordova.console
     - https://github.com/driftyco/ionic-plugins-keyboard
 - add standard usefull plugins :
-    - org.apache.cordova.splashscreen (http://ngcordova.com/docs/plugins/splashscreen/)
+    - org.apache.cordova.splashscreen ([ngCordova](http://ngcordova.com/docs/plugins/splashscreen/))
     - https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
-    - org.apache.cordova.dialogs (http://ngcordova.com/docs/plugins/dialogs/)
-    - de.appplant.cordova.plugin.local-notification (http://ngcordova.com/docs/plugins/localNotification/)
-    - org.apache.cordova.statusbar (http://ngcordova.com/docs/plugins/statusbar/)
-    - https://github.com/pushandplay/cordova-plugin-apprate (http://ngcordova.com/docs/plugins/appRate/)
-    - https://github.com/whiteoctober/cordova-plugin-app-version (http://ngcordova.com/docs/plugins/appVersion/)
+    - org.apache.cordova.dialogs ([ngCordova](http://ngcordova.com/docs/plugins/dialogs/))
+    - de.appplant.cordova.plugin.local-notification ([ngCordova](http://ngcordova.com/docs/plugins/localNotification/))
+    - org.apache.cordova.statusbar ([ngCordova](http://ngcordova.com/docs/plugins/statusbar/))
+    - https://github.com/pushandplay/cordova-plugin-apprate ([ngCordova](http://ngcordova.com/docs/plugins/appRate/))
+    - https://github.com/whiteoctober/cordova-plugin-app-version ([ngCordova](http://ngcordova.com/docs/plugins/appVersion/))

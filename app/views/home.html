@@ -5,21 +5,22 @@
     </div>
     <h1 class="title">Home</h1>
     <div class="buttons">
-      <button class="button" ng-click="fn.showReorder()">Reorder</button>
-      <button class="button" ng-click="fn.showDelete()">Delete</button>
+      <button class="button" ng-click="userList.fn.showDelete()">Delete</button>
+      <button class="button" ng-click="userList.fn.showReorder()">Reorder</button>
     </div>
   </ion-header-bar>
 
   <ion-content>
-    <h1 class="padding">User list</h1>
     <!-- sample here : http://codepen.io/ionic/pen/JsHjf -->
-    <ion-list show-delete="data.state.showDelete" show-reorder="data.state.showReorder">
-      <ion-item ng-repeat="user in data.users" item="user">
-        {{user.name}}
-        <ion-delete-button class="ion-minus-circled" ng-click="fn.delete(user)"></ion-delete-button>
-        <ion-option-button class="button-assertive" ng-click="fn.edit(user)">Edit</ion-option-button>
-        <ion-option-button class="button-calm" ng-click="fn.share(user)">Share</ion-option-button>
-        <ion-reorder-button class="ion-navicon" on-reorder="fn.move(user, $fromIndex, $toIndex)"></ion-reorder-button>
+    <ion-list show-delete="userList.state.showDelete" show-reorder="userList.state.showReorder">
+      <ion-item class="item-avatar" ng-repeat="twitt in data.twitts" item="twitt">
+        <img ng-src="{{twitt.avatar}}">
+        <h2>{{twitt.user}}</h2>
+        <p>{{twitt.content}}</p>
+        <ion-delete-button class="ion-minus-circled" ng-click="userList.fn.delete(data.twitts, twitt)"></ion-delete-button>
+        <ion-option-button class="button-assertive" ng-click="fn.edit(twitt)">Edit</ion-option-button>
+        <ion-option-button class="button-calm" ng-click="fn.share(twitt)">Share</ion-option-button>
+        <ion-reorder-button class="ion-navicon" on-reorder="userList.fn.reorder(data.twitts, twitt, $fromIndex, $toIndex)"></ion-reorder-button>
       </ion-item>
     </ion-list>
   </ion-content>
