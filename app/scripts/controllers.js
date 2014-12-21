@@ -4,7 +4,7 @@ angular.module('app')
   'use strict';
 })
 
-.controller('HomeCtrl', function($scope, $window, TwittSrv){
+.controller('HomeCtrl', function($scope, $window, TwittSrv, IonicUi){
   'use strict';
   // sample here : http://codepen.io/ionic/pen/JsHjf
   var data = {}, fn = {};
@@ -25,10 +25,12 @@ angular.module('app')
       showDelete: function(){
         userListState.showDelete = !userListState.showDelete;
         userListState.showReorder = false;
+        $scope.twittsPopover.hide();
       },
       showReorder: function(){
         userListState.showDelete = false;
         userListState.showReorder = !userListState.showReorder;
+        $scope.twittsPopover.hide();
       },
       delete: function(collection, elt){
         collection.splice(collection.indexOf(elt), 1);
@@ -53,5 +55,15 @@ angular.module('app')
       $scope.$broadcast('scroll.refreshComplete');
     });
   };
+
+  IonicUi.initPopover($scope, 'views/partials/twitt-list-popover.html').then(function(popover){
+    $scope.twittsPopover = popover;
+  });
+  fn.showOptions = function(event){
+    $scope.twittsPopover.show(event);
+  };
+  $scope.$on('$destroy', function() {
+    $scope.twittsPopover.remove();
+  });
 });
 
