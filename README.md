@@ -32,7 +32,7 @@ To run it to your android device :
 
 - `mkdir platforms plugins www` : create cordova folders
 - `cordova platform add android` : add android platform to the project
-- `cordova plugin add org.apache.cordova.device org.apache.cordova.console https://github.com/driftyco/ionic-plugins-keyboard` : add interesting plugins
+- `cordova plugin add org.apache.cordova.device org.apache.cordova.dialogs org.apache.cordova.console https://github.com/driftyco/ionic-plugins-keyboard https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git` : add interesting plugins
 - `grunt build && cordova run android` : build the app and run it on your phone
 
 You have also other grunt commands :
@@ -58,12 +58,12 @@ If you use this template project, you might want to rename it. Here are all the 
 
 - plugins added :
     - org.apache.cordova.device ([ngCordova](http://ngcordova.com/docs/plugins/device/))
+    - org.apache.cordova.dialogs ([ngCordova](http://ngcordova.com/docs/plugins/dialogs/))
     - org.apache.cordova.console
     - https://github.com/driftyco/ionic-plugins-keyboard
+    - https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git ([ngCordova](http://ngcordova.com/docs/plugins/toast/))
 - add standard usefull plugins :
     - org.apache.cordova.splashscreen ([ngCordova](http://ngcordova.com/docs/plugins/splashscreen/))
-    - https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
-    - org.apache.cordova.dialogs ([ngCordova](http://ngcordova.com/docs/plugins/dialogs/))
     - de.appplant.cordova.plugin.local-notification ([ngCordova](http://ngcordova.com/docs/plugins/localNotification/))
     - org.apache.cordova.statusbar ([ngCordova](http://ngcordova.com/docs/plugins/statusbar/))
     - https://github.com/pushandplay/cordova-plugin-apprate ([ngCordova](http://ngcordova.com/docs/plugins/appRate/))
