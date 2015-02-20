@@ -54,14 +54,22 @@ If you use this template project, you might want to rename it. Here are all the 
 - Bower 1.3.11 (`bower -v`)
 - Ionic 1.0.0-beta.14 (see www/bower_components/ionic/release/version.json)
 
+# Features
+
+- Angular wrappers & browser mocks for plugins :
+    - [org.apache.cordova.device](https://github.com/apache/cordova-plugin-device) ([ngCordova](http://ngcordova.com/docs/plugins/device/))
+    - [org.apache.cordova.dialogs](https://github.com/apache/cordova-plugin-dialogs) ([ngCordova](http://ngcordova.com/docs/plugins/dialogs/))
+    - [https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin](https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin) ([ngCordova](http://ngcordova.com/docs/plugins/toast/))
+    - [org.apache.cordova.geolocation](https://github.com/apache/cordova-plugin-geolocation)
+    - [org.apache.cordova.camera](https://github.com/apache/cordova-plugin-camera)
+    - [https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
+    - [org.apache.cordova.media](https://github.com/apache/cordova-plugin-media)
+    - [https://github.com/loicknuchel/cordova-device-accounts](https://github.com/loicknuchel/cordova-device-accounts)
+
 # TODO
 
-- plugins added :
-    - org.apache.cordova.device ([ngCordova](http://ngcordova.com/docs/plugins/device/))
-    - org.apache.cordova.dialogs ([ngCordova](http://ngcordova.com/docs/plugins/dialogs/))
-    - org.apache.cordova.console
-    - https://github.com/driftyco/ionic-plugins-keyboard
-    - https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git ([ngCordova](http://ngcordova.com/docs/plugins/toast/))
+- replace LogSrv service with a $log extention
+- add tests for plugins services
 - add standard usefull plugins :
     - org.apache.cordova.splashscreen ([ngCordova](http://ngcordova.com/docs/plugins/splashscreen/))
     - de.appplant.cordova.plugin.local-notification ([ngCordova](http://ngcordova.com/docs/plugins/localNotification/))

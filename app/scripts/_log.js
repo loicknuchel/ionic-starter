@@ -125,7 +125,7 @@ var Logger = (function(){
   var cache = {currentEventId: null, userId: null, deviceId: null};
   Scheduler.init();
 
-  function track(name, event){
+  function track(name, event, _allowNoUser){
     if(typeof event === 'string')                       { event = {messgae: event};                 }
     if(!event.name)                                     { event.name = name;                        }
     if(!event.time)                                     { event.time = Date.now();                  }
@@ -139,9 +139,9 @@ var Logger = (function(){
       cache.currentEventId = event.id;
     }
 
-    if(!event.user){
+    if(!event.user && !_allowNoUser){
       window.setTimeout(function(){
-        track(name, event);
+        track(name, event, true);
       }, 2000);
     } else {
       if(config.verbose){ console.log('$[track] '+name, event); }

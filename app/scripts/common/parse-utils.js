@@ -18,7 +18,8 @@ angular.module('app')
       createUserCrud: createUserCrud,   // (sessionToken, _processBreforeSave, _useCache)   create an angular service to interract with Parse User object
       signup: signup,                   // (user)                                           signup new user in parse. User MUST contain username & password fields !
       login: login,                     // (username, password)                             login existing user
-      passwordRecover: passwordRecover  // (email)                                          send user password reset
+      passwordRecover: passwordRecover, // (email)                                          send user password reset
+      geoPoint: geoPoint                // (lat, lon)                                       create a Parse GeoPoint
     };
     var parseUrl = 'https://api.parse.com/1';
     var parseObjectKey = 'objectId';
@@ -38,8 +39,9 @@ angular.module('app')
       }
     };
 
-    function createCrud(objectUrl, _processBreforeSave, _useCache){
-      var endpointUrl = parseUrl+objectUrl;
+    function createCrud(objectClass, _processBreforeSave, _useCache){
+      // objectClass should by like : MyObject
+      var endpointUrl = parseUrl+'/classes/'+objectClass;
       return CrudRestUtils.createCrud(endpointUrl, parseObjectKey, getParseData, _processBreforeSave, _useCache, parseHttpConfig);
     }
 
@@ -82,6 +84,14 @@ angular.module('app')
       return $http.post(parseUrl+'/requestPasswordReset', {email: email}, parseHttpConfig).then(function(){
         // return nothing
       });
+    }
+
+    function geoPoint(lat, lon){
+      return {
+        __type: 'GeoPoint',
+        latitude: lat,
+        longitude: lon
+      };
     }
 
     return service;

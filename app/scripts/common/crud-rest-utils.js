@@ -31,7 +31,7 @@ angular.module('app')
       eltKey:   objectKey,
       getUrl:   function(_id)           { return _crudGetUrl(endpointUrl, _id);                                                             },
       getAll:   function(_noCache)      { return _crudGetAll(endpointUrl, objectKey, cache, _noCache, _getData, _httpConfig);               },
-      find:     function(where)         { return _crudFind(where, endpointUrl, objectKey, cache, _getData, _httpConfig);                    },
+      find:     function(where, order)  { return _crudFind(where, order, endpointUrl, objectKey, cache, _getData, _httpConfig);             },
       findOne:  function(where)         { return _crudFindOne(where, endpointUrl, objectKey, cache, _getData, _httpConfig);                 },
       get:      function(id, _noCache)  { return _crudGet(id, endpointUrl, objectKey, cache, _noCache, _getData, _httpConfig);              },
       save:     function(elt)           { return _crudSave(elt, endpointUrl, objectKey, cache, _processBreforeSave, _getData, _httpConfig); },
@@ -116,9 +116,9 @@ angular.module('app')
     });
   }
 
-  function _crudFind(where, endpointUrl, objectKey, _cache, _getData, _httpConfig){
+  function _crudFind(where, order, endpointUrl, objectKey, _cache, _getData, _httpConfig){
     var url = _crudGetUrl(endpointUrl);
-    return $http.get(url+'?where='+JSON.stringify(where), _crudConfig(null, _httpConfig)).then(function(result){
+    return $http.get(url+'?where='+JSON.stringify(where)+(order ? '&order='+order : ''), _crudConfig(null, _httpConfig)).then(function(result){
       var elts = typeof _getData === 'function' ? _getData(result) : result.data;
       if(Array.isArray(elts)){
         if(_cache){ // add all individual elements to cache !
@@ -132,7 +132,7 @@ angular.module('app')
   }
 
   function _crudFindOne(where, endpointUrl, objectKey, _cache, _getData, _httpConfig){
-    return _crudFind(where, endpointUrl, objectKey, _cache, _getData, _httpConfig).then(function(elts){
+    return _crudFind(where, '', endpointUrl, objectKey, _cache, _getData, _httpConfig).then(function(elts){
       if(Array.isArray(elts) && elts.length > 0){
         if(elts.length > 1){ console.warn('More than one result for clause', where); }
         return elts[0];

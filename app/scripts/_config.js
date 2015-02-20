@@ -8,7 +8,11 @@ var Config = (function(){
     storage: true, // should save data to browser storage
     storagePrefix: 'app-', // prefix all stoarge entries with this prefix
     emailSupport: '',
-    backendUrl: ''
+    backendUrl: '',
+    parse: {
+      applicationId: '',
+      restApiKey: ''
+    }
   };
   return cfg;
 })();
