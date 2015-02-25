@@ -7,6 +7,7 @@
   <author email="loicknuchel@gmail.com" href="http://loic.knuchel.org/">Loïc Knuchel</author>
   <content src="index.html"/>
   <access origin="*"/>
+  <preference name="orientation" value="portrait"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>

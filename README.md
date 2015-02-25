@@ -60,7 +60,6 @@ As it's only a template project, you may want to change its name. For that, you 
 ## TODO
 
 - add angular authentication
-- no device auto-orientation by default (could cause problems with ionic lists)
 - sidemenu + tabs
 - replace LogSrv service with a $log extention
 - add tests for plugins services
