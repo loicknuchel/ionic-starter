@@ -19,7 +19,7 @@ Tool used :
 - [AngularJS](https://angularjs.org/)
 - [Ionic](http://ionicframework.com/)
 
-# Getting started
+## Getting started
 
 - `git clone git@github.com:loicknuchel/ionic-starter.git` : get code on your laptop
 - `cd ionic-starter` : go to project root folder
@@ -39,7 +39,7 @@ You have also other grunt commands :
 
 - `grunt test` : run your test suite
 
-# Personalize
+## Personalize
 
 If you use this template project, you might want to rename it. Here are all the place you have to change to do it :
 
@@ -47,14 +47,14 @@ If you use this template project, you might want to rename it. Here are all the 
 - `bower.json`
 - `package.json`
 
-# Versions
+## Versions
 
 - Node v0.10.26 (`node -v`)
 - Cordova 4.1.2 (`cordova -version`)
 - Bower 1.3.11 (`bower -v`)
 - Ionic 1.0.0-beta.14 (see www/bower_components/ionic/release/version.json)
 
-# Features
+## Features
 
 - Angular wrappers & browser mocks for plugins :
     - [org.apache.cordova.device](https://github.com/apache/cordova-plugin-device) ([ngCordova](http://ngcordova.com/docs/plugins/device/))
@@ -66,7 +66,7 @@ If you use this template project, you might want to rename it. Here are all the 
     - [org.apache.cordova.media](https://github.com/apache/cordova-plugin-media)
     - [https://github.com/loicknuchel/cordova-device-accounts](https://github.com/loicknuchel/cordova-device-accounts)
 
-# TODO
+## TODO
 
 - replace LogSrv service with a $log extention
 - add tests for plugins services
@@ -76,3 +76,17 @@ If you use this template project, you might want to rename it. Here are all the 
     - org.apache.cordova.statusbar ([ngCordova](http://ngcordova.com/docs/plugins/statusbar/))
     - https://github.com/pushandplay/cordova-plugin-apprate ([ngCordova](http://ngcordova.com/docs/plugins/appRate/))
     - https://github.com/whiteoctober/cordova-plugin-app-version ([ngCordova](http://ngcordova.com/docs/plugins/appVersion/))
+
+## Infos
+
+### Specific urls
+
+Use these custom urls to open other apps using inappbrowser (org.apache.cordova.inappbrowser)
+
+- "tel:0123456789" => call this number
+- "sms:0123456789?body=coucou" => send sms to this number
+- "geo:lat,lon" => open google map to this geoloc
+- "mailto:toto@example.com" => send an email
+- "market:???"
+
+see http://stackoverflow.com/questions/26271313/tel-sms-and-mailto-no-longer-working-in-android-after-upgrading-to-cordo

@@ -115,11 +115,11 @@ angular.module('app')
   'use strict';
   var storageCache = {};
   var service = {
-    get:                function(key, _defaultValue)  { return Utils.async(_get(key, _defaultValue));         },
-    set:                function(key, value)          { return Utils.async(_set(key, value));                 },
-    remove:             function(key)                 { return Utils.async(_remove(key));                     },
-    clear:              function()                    { return Utils.async(_clear());                         },
-    clearStartingWith:  function(keyStartWith)        { return Utils.async(_clearStartingWith(keyStartWith)); },
+    get:                function(key, _defaultValue)  { return Utils.async(function(){return _get(key, _defaultValue);});         },
+    set:                function(key, value)          { return Utils.async(function(){return _set(key, value);});                 },
+    remove:             function(key)                 { return Utils.async(function(){return _remove(key);});                     },
+    clear:              function()                    { return Utils.async(function(){return _clear();});                         },
+    clearStartingWith:  function(keyStartWith)        { return Utils.async(function(){return _clearStartingWith(keyStartWith);}); },
     getSync: _get,
     setSync: _set,
     removeSync: _remove,

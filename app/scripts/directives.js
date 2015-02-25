@@ -1,5 +1,37 @@
 angular.module('app')
 
+// open external links (starting with http:// or https://) outside the app
+.directive('href', function($window){
+  'use strict';
+  var externePrefixes = ['http:', 'https:', 'tel:', 'sms:'];
+  function isExterneUrl(url){
+    if(url){
+      for(var i in externePrefixes){
+        if(url.indexOf(externePrefixes[i]) === 0){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  return {
+    restrict: 'A',
+    scope: {
+      url: '@href'
+    },
+    link: function(scope, element, attrs){
+      if(isExterneUrl(scope.url)){
+        element.bind('click', function(e){
+          e.preventDefault();
+          // require cordova plugin org.apache.cordova.inappbrowser
+          $window.open(encodeURI(scope.url), '_system', 'location=yes');
+        });
+      }
+    }
+  };
+})
+
 .directive('debounce', function($timeout){
   'use strict';
   return {

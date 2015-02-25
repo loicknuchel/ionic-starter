@@ -158,7 +158,7 @@ var Logger = (function(){
         window.alert('Error: '+event.data.type+'\n'+event.data.error.message+'\nPlease contact: '+Config.emailSupport);
       }
       if(name === 'exception'){
-        window.alert('Exception: '+event.data.message+'\nPlease contact: '+Config.emailSupport);
+        window.alert('Exception: '+event.message+'\nPlease contact: '+Config.emailSupport);
       }
     }
   }

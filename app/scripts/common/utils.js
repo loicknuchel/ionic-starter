@@ -9,6 +9,7 @@ angular.module('app')
     startsWith: startsWith,   // (str, prefix)                  check if str starts with prefix
     endsWith: endsWith,       // (str, suffix)                  check if str ends with suffix
     randInt: randInt,         // (min, max)                     generate a random Int between min & max
+    toDate: toDate,           // (date)                         format input (timestamp, iso string, JS Date, moment Date) to a JS Date
     async: async,             // (fn)                           transform synchronous function in asynchronous function
     debounce: debounce,       // (key, callback, _debounceTime) debounce a value based on given key
     trustHtml: trustHtml,     // (html)                         angular trust html (to display unsafe html)
@@ -41,6 +42,13 @@ angular.module('app')
 
   function randInt(min, max){
     return Math.floor(Math.random()*(max - min + 1)) - min;
+  }
+
+  function toDate(date){
+    if(typeof date === 'number'){ return new Date(date); } // timestamp
+    if(typeof date === 'string'){ return new Date(date); } // iso string
+    if(date instanceof Date){ return date; } // JavaScript Date
+    if(date && typeof date.toDate === 'function' && date.toDate() instanceof Date){ return date.toDate(); } // moment Date
   }
 
   function async(fn){
@@ -135,7 +143,7 @@ angular.module('app')
       return (aBool === bBool ? 0 : (aBool ? -1 : 1)) * (params.desc ? -1 : 1);
     });
   }
-  
+
   function _getDeep(obj, attrs, _defaultValue){
     if(Array.isArray(attrs) && attrs.length > 0){
       if(typeof obj === 'object'){

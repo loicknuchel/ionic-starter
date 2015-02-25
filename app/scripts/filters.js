@@ -1,30 +1,34 @@
 angular.module('app')
 
-.filter('date', function(){
+.filter('date', function(Utils){
   'use strict';
-  return function(timestamp, format){
-    return timestamp ? moment(timestamp).format(format ? format : 'll') : '<date>';
+  return function(date, format){
+    var jsDate = Utils.toDate(date);
+    return jsDate ? moment(jsDate).format(format ? format : 'll') : '<date>';
   };
 })
 
-.filter('datetime', function(){
+.filter('datetime', function(Utils){
   'use strict';
-  return function(timestamp, format){
-    return timestamp ? moment(timestamp).format(format ? format : 'D MMM YYYY, HH:mm:ss') : '<datetime>';
+  return function(date, format){
+    var jsDate = Utils.toDate(date);
+    return jsDate ? moment(jsDate).format(format ? format : 'D MMM YYYY, HH:mm:ss') : '<datetime>';
   };
 })
 
-.filter('time', function(){
+.filter('time', function(Utils){
   'use strict';
-  return function(timestamp, format){
-    return timestamp ? moment(timestamp).format(format ? format : 'LT') : '<time>';
+  return function(date, format){
+    var jsDate = Utils.toDate(date);
+    return jsDate ? moment(jsDate).format(format ? format : 'LT') : '<time>';
   };
 })
 
-.filter('humanTime', function(){
+.filter('humanTime', function(Utils){
   'use strict';
-  return function(timestamp){
-    return timestamp ? moment(timestamp).fromNow(true) : '<humanTime>';
+  return function(date){
+    var jsDate = Utils.toDate(date);
+    return jsDate ? moment(jsDate).fromNow(true) : '<humanTime>';
   };
 })
 
