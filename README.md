@@ -22,10 +22,9 @@ To run the app on your android device :
 
 - `ionic platform add android` : add android platform to the project
 - `ionic resources` : generate icon & splash-screen for project platforms
-- `ionic plugin add com.ionic.keyboard org.apache.cordova.console org.apache.cordova.device org.apache.cordova.dialogs https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin org.apache.cordova.inappbrowser` : add usefull plugins
 - `ionic run android` : run your app !
 
-Once again, in one command : `ionic platform add android && ionic resources && ionic plugin add com.ionic.keyboard org.apache.cordova.console org.apache.cordova.device org.apache.cordova.dialogs https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin org.apache.cordova.inappbrowser && ionic run android`
+Once again, in one command : `ionic platform add android && ionic resources && ionic run android`
 
 ## Main features
 
