@@ -1,60 +1,34 @@
-# Ionic starter
+# Ionic Starter
 
-This repo aims to let you start really quickly a new ionic project by simply cloning this repo. This app comes with an setted up environment, usefull boilerplate code and best practices with ionic.
-Feel free to open an issue to any question or suggestion you could have.
+This project aims to let you start a new app as fast as possible.
 
-I'm not alone trying to achieve that, take a look at similar projects :
+Just clone it and you are ready to do ! Many boilerplate code is already written and most usefull libs are included. I'm trying to follow best practices with Angular & Ionic so it could be a good kick start :)
 
-- [ionic-rocket](https://github.com/yrezgui/ionic-rocket)
-- [generator-ionic](https://github.com/diegonetto/generator-ionic)
-- [ionic-cli](http://ionicframework.com/getting-started/)
-
-Tool used :
-
-- [NodeJS](http://nodejs.org/)
-- [Grunt](http://gruntjs.com/)
-- [Bower](http://bower.io/)
-- [Sass](http://sass-lang.com/) (has dependency on [Ruby](https://www.ruby-lang.org/))
-- [Cordova](http://cordova.apache.org/)
-- [AngularJS](https://angularjs.org/)
-- [Ionic](http://ionicframework.com/)
+Feel free to open an issue for any question or suggestion you could have.
 
 ## Getting started
 
-- `git clone git@github.com:loicknuchel/ionic-starter.git` : get code on your laptop
-- `cd ionic-starter` : go to project root folder
-- `npm install` : install all grunt dependencies
-- `bower install` : to install all bower dependencies
-- `grunt serve` : to test on your computer
-- You're now ready with a shiny livereload :D
+- install nodejs, gulp, cordova & ionic (if not already done)
+- `git clone git@github.com:loicknuchel/ionic-starter.git` : clone this repo
+- `cd ionic-starter` : go to folder
+- `bower install` : install app dependencies
+- `npm install gulp` : install build dependencies
+- `ionic setup sass` : use sass
+- `ionic serve` : start the app on your browser
 
-To run it to your android device :
+For the impatients, you can run all this commands in one time : `git clone git@github.com:loicknuchel/ionic-starter.git && cd ionic-starter && bower install && npm install gulp && ionic setup sass && ionic serve` ;)
 
-- `mkdir platforms plugins www` : create cordova folders
-- `cordova platform add android` : add android platform to the project
-- `cordova plugin add org.apache.cordova.device org.apache.cordova.dialogs org.apache.cordova.console https://github.com/driftyco/ionic-plugins-keyboard https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git` : add interesting plugins
-- `grunt build && cordova run android` : build the app and run it on your phone
+To run the app on your android device :
 
-You have also other grunt commands :
+- `ionic platform add android` : add android platform to the project
+- `ionic resources` : generate icon & splash-screen for project platforms
+- `ionic plugin add com.ionic.keyboard org.apache.cordova.console org.apache.cordova.device` : add usefull plugins
+- `ionic run android` : run your app !
 
-- `grunt test` : run your test suite
+Once again, in one command : `ionic platform add android && ionic resources && ionic plugin add com.ionic.keyboard org.apache.cordova.console org.apache.cordova.device && ionic run android`
 
-## Personalize
+## Main features
 
-If you use this template project, you might want to rename it. Here are all the place you have to change to do it :
-
-- `config.xml`
-- `bower.json`
-- `package.json`
-
-## Versions
-
-- Node v0.10.26 (`node -v`)
-- Cordova 4.1.2 (`cordova -version`)
-- Bower 1.3.11 (`bower -v`)
-- Ionic 1.0.0-beta.14 (see www/bower_components/ionic/release/version.json)
-
-## Features
 
 - Angular wrappers & browser mocks for plugins :
     - [org.apache.cordova.device](https://github.com/apache/cordova-plugin-device) ([ngCordova](http://ngcordova.com/docs/plugins/device/))
@@ -66,8 +40,28 @@ If you use this template project, you might want to rename it. Here are all the 
     - [org.apache.cordova.media](https://github.com/apache/cordova-plugin-media)
     - [https://github.com/loicknuchel/cordova-device-accounts](https://github.com/loicknuchel/cordova-device-accounts)
 
+## Personnalize
+
+As it's only a template project, you may want to change its name. For that, you just have to open :
+
+- `config.xml` (widget id, name, description & author)
+- `www/index.html` (title)
+- `bower.json` (name, homepage, author & description)
+- `package.json` (name & description)
+
+## Used versions
+
+- Node v0.10.26 (`node -v`)
+- Cordova 4.2.0 (`cordova -version`)
+- Bower 1.3.12 (`bower -v`)
+- Angular 1.3.6 (see bower.json)
+- Ionic 1.0.0-beta.14 (see bower.json)
+
 ## TODO
 
+- add angular authentication
+- no device auto-orientation by default (could cause problems with ionic lists)
+- sidemenu + tabs
 - replace LogSrv service with a $log extention
 - add tests for plugins services
 - add standard usefull plugins :
@@ -90,3 +84,8 @@ Use these custom urls to open other apps using inappbrowser (org.apache.cordova.
 - "market:???"
 
 see http://stackoverflow.com/questions/26271313/tel-sms-and-mailto-no-longer-working-in-android-after-upgrading-to-cordo
+
+### Android debug
+
+- android remote debug
+- activate developer mode on android

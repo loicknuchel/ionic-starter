@@ -1,15 +1,15 @@
-.tmp/
-.sass-cache/
-app/bower_components/
-app/fonts/
-coverage/
-hooks/
-merges/
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
 node_modules/
 platforms/
 plugins/
-www/
 
-npm-debug.log
+# when use sass, do not commit css files
+www/css/
+www/lib/
+
+# do not commit generated images
+resources/android
 
 *~
