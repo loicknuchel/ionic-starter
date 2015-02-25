@@ -85,5 +85,5 @@ see http://stackoverflow.com/questions/26271313/tel-sms-and-mailto-no-longer-wor
 
 ### Android debug
 
-- android remote debug
+- android remote debug : https://developer.chrome.com/devtools/docs/remote-debugging
 - activate developer mode on android

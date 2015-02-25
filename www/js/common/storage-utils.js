@@ -1,7 +1,7 @@
 angular.module('app')
 
 // Storage helpuer using localForage (asynchronous best avaiable browser storage) and cache
-.factory('StorageUtils', function($localForage, $q, Utils, Config){
+.factory('StorageUtils', function($localForage, $q, $log, Utils, Config){
   'use strict';
   var storageCache = {};
   var service = {
@@ -23,8 +23,8 @@ angular.module('app')
             storageCache[key] = angular.copy(_defaultValue);
           }
           return angular.copy(storageCache[key]);
-        }, function(err){
-          console.error('ERROR in LocalForageUtils._get('+key+')', err);
+        }, function(error){
+          $log.error('error in LocalForageUtils._get('+key+')', error);
         });
       } else {
         storageCache[key] = angular.copy(_defaultValue);
@@ -52,20 +52,20 @@ angular.module('app')
       if(Config.storage){
         return $localForage.setItem(Config.storagePrefix+key, JSON.stringify(storageCache[key])).then(function(value){
           // return nothing !
-        }, function(err){
-          console.error('ERROR in LocalForageUtils._set('+key+')', err);
+        }, function(error){
+          $log.error('error in LocalForageUtils._set('+key+')', error);
         });
       } else {
         return $q.when();
       }
     } else {
-      console.debug('Don\'t save <'+key+'> because values are equals !', value);
+      $log.debug('Don\'t save <'+key+'> because values are equals !', value);
       return $q.when();
     }
   }
 
   function _remove(key){
-    console.debug('Remove <'+key+'> from storage !');
+    $log.debug('Remove <'+key+'> from storage !');
     delete storageCache[key];
     if(Config.storage){
       return $localForage.removeItem(Config.storagePrefix+key);
@@ -111,7 +111,7 @@ angular.module('app')
 
 
 // LocalStorage helper with caching system & asynchronous calls
-.factory('LocalStorageUtils', function($window, Utils, Config){
+.factory('LocalStorageUtils', function($window, $log, Utils, Config){
   'use strict';
   var storageCache = {};
   var service = {
@@ -153,12 +153,12 @@ angular.module('app')
         $window.localStorage.setItem(Config.storagePrefix+key, JSON.stringify(storageCache[key]));
       }
     } else {
-      console.debug('Don\'t save <'+key+'> because values are equals !');
+      $log.debug('Don\'t save <'+key+'> because values are equals !');
     }
   }
 
   function _remove(key){
-    console.debug('Remove <'+key+'> from storage !');
+    $log.debug('Remove <'+key+'> from storage !');
     delete storageCache[key];
     if(Config.storage && $window.localStorage){
       $window.localStorage.removeItem(Config.storagePrefix+key);

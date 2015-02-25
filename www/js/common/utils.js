@@ -1,6 +1,6 @@
 angular.module('app')
 
-.factory('Utils', function($timeout, $q, $sce){
+.factory('Utils', function($timeout, $q, $sce, $log){
   'use strict';
   var service = {
     createUuid: createUuid,   // ()                             generate an identifier like 'de7a545d-0045-454a-81de-deb9d74e74a7'
@@ -115,7 +115,7 @@ angular.module('app')
       else if(typeof firstElt === 'number')  { _intSort(arr, params);  }
       else if(typeof firstElt === 'string')  { _strSort(arr, params);  }
       else {
-        console.warn('Unable to find suitable sort for type <'+(typeof firstElt)+'>', firstElt);
+        $log.warn('Unable to find suitable sort for type <'+(typeof firstElt)+'>', firstElt);
       }
     }
   }

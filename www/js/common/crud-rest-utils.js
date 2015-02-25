@@ -1,6 +1,6 @@
 angular.module('app')
 
-.factory('CrudRestUtils', function($http, $q, $cacheFactory, $window, CollectionUtils, Utils){
+.factory('CrudRestUtils', function($http, $q, $cacheFactory, $window, $log, CollectionUtils, Utils){
   'use strict';
   var service = {
     createCrud: createCrud,         // (endpointUrl, _objectKey, _getData, _processBreforeSave, _useCache, _httpConfig)   create an angular service to interract with REST API (see method doc)
@@ -134,7 +134,7 @@ angular.module('app')
   function _crudFindOne(where, endpointUrl, objectKey, _cache, _getData, _httpConfig){
     return _crudFind(where, '', endpointUrl, objectKey, _cache, _getData, _httpConfig).then(function(elts){
       if(Array.isArray(elts) && elts.length > 0){
-        if(elts.length > 1){ console.warn('More than one result for clause', where); }
+        if(elts.length > 1){ $log.warn('More than one result for clause', where); }
         return elts[0];
       }
     });
@@ -195,7 +195,7 @@ angular.module('app')
       data.elts = elts;
       data.status.loading = false;
     }, function(err){
-      console.warn('can\'t load data', err);
+      $log.warn('can\'t load data', err);
       data.status.loading = false;
       data.status.error = err.statusText ? err.statusText : 'Unable to load data :(';
     });
@@ -233,12 +233,12 @@ angular.module('app')
       var elt = _elt ? angular.copy(_elt) : {};
       obj[attr].push(elt);
     } else {
-      console.warn('Unable to addElt to', obj);
+      $log.warn('Unable to addElt to', obj);
     }
   }
   function _ctrlRemoveElt(arr, index){
     if(Array.isArray(arr) && index < arr.length){ arr.splice(index, 1); }
-    else { console.warn('Unable to removeElt <'+index+'> from', arr); }
+    else { $log.warn('Unable to removeElt <'+index+'> from', arr); }
   }
 
   function _ctrlCancelEdit(data){
@@ -255,8 +255,8 @@ angular.module('app')
       data.form = null;
       data.status.loading = false;
       data.status.saving = false;
-    }, function(err){
-      console.log('Error', err);
+    }, function(error){
+      $log.info('error', error);
       data.status.saving = false;
       data.status.error = err;
     });
@@ -271,8 +271,8 @@ angular.module('app')
         data.form = null;
         data.status.loading = false;
         data.status.removing = false;
-      }, function(err){
-        console.log('Error', err);
+      }, function(error){
+        $log.info('error', error);
         data.status.removing = false;
         data.status.error = err;
       });

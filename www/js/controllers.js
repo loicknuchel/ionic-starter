@@ -4,7 +4,7 @@ angular.module('app')
   'use strict';
 })
 
-.controller('TwittsCtrl', function($scope, $window, $ionicModal, $ionicPopover, $ionicActionSheet, TwittSrv){
+.controller('TwittsCtrl', function($scope, $window, $ionicModal, $ionicPopover, $ionicActionSheet, $log, TwittSrv){
   'use strict';
   var data = {}, fn = {}, ui = {};
   $scope.data = data;
@@ -66,8 +66,8 @@ angular.module('app')
         {text: 'Share <i class="icon ion-share"></i>'}
       ],
       buttonClicked: function(index){
-        if(index === 0) { fn.share(twitt);                            }
-        else            { console.log('Unknown button index', index); }
+        if(index === 0) { fn.share(twitt);                          }
+        else            { $log.warn('Unknown button index', index); }
         return true;
       },
       destructiveText: 'Delete',

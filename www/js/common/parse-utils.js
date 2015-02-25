@@ -12,14 +12,16 @@ angular.module('app')
     credentials.restApiKey = restApiKey;
   };
 
-  this.$get = ['$http', '$q', 'CrudRestUtils', function($http, $q, CrudRestUtils){
+  this.$get = ['$http', '$q', 'CrudRestUtils', 'Utils', function($http, $q, CrudRestUtils, Utils){
     var service = {
       createCrud: createCrud,           // (objectUrl, _processBreforeSave, _useCache)      create an angular service to interract with Parse (see CrudRestUtils)
       createUserCrud: createUserCrud,   // (sessionToken, _processBreforeSave, _useCache)   create an angular service to interract with Parse User object
       signup: signup,                   // (user)                                           signup new user in parse. User MUST contain username & password fields !
       login: login,                     // (username, password)                             login existing user
       passwordRecover: passwordRecover, // (email)                                          send user password reset
-      geoPoint: geoPoint                // (lat, lon)                                       create a Parse GeoPoint
+      geoPoint: geoPoint,               // (lat, lon)                                       create a Parse GeoPoint
+      toPointer: toPointer,             // (className, objectId)                            create a Parse Pointer
+      toDate: toDate                    // (date)                                           format date for Parse
     };
     var parseUrl = 'https://api.parse.com/1';
     var parseObjectKey = 'objectId';
@@ -92,6 +94,22 @@ angular.module('app')
         latitude: lat,
         longitude: lon
       };
+    }
+
+    function toPointer(className, objectId){
+      return {
+        __type: 'Pointer',
+        className: className,
+        objectId: (typeof objectId === 'object' ? objectId[parseObjectKey] : objectId)
+      };
+    }
+
+    function toDate(date){
+      var d = Utils.toDate(date);
+      if(d){
+        return d.toISOString();
+      }
+      throw "Function toDate must be used with a timestamp or a Date object";
     }
 
     return service;

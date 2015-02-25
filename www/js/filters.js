@@ -32,7 +32,7 @@ angular.module('app')
   };
 })
 
-.filter('duration', function(){
+.filter('duration', function($log){
   'use strict';
   return function(seconds, humanize){
     if(seconds || seconds === 0){
@@ -43,7 +43,7 @@ angular.module('app')
         return prefix + moment.duration(seconds, 'seconds').format('hh:mm:ss');
       }
     } else {
-      console.warn('Unable to format duration', seconds);
+      $log.warn('Unable to format duration', seconds);
       return '<duration>';
     }
   };
