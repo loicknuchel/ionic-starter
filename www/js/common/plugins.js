@@ -1,6 +1,6 @@
 angular.module('app')
 
-.factory('PluginUtils', function($window, $ionicPlatform, $q, LogSrv){
+.factory('PluginUtils', function($window, $ionicPlatform, $q, $log){
   'use strict';
   var service = {
     onReady: onReady
@@ -9,7 +9,7 @@ angular.module('app')
   function onReady(name, testFn){
     return $ionicPlatform.ready().then(function(){
       if(!testFn()){
-        LogSrv.trackError('pluginNotFound:'+name);
+        $log.error('pluginNotFound:'+name);
         return $q.reject({message: 'pluginNotFound:'+name});
       }
     });
@@ -44,7 +44,7 @@ angular.module('app')
 })
 
 // for Dialogs plugin : org.apache.cordova.dialogs (https://github.com/apache/cordova-plugin-dialogs)
-.factory('DialogPlugin', function($window, $q, PluginUtils, LogSrv){
+.factory('DialogPlugin', function($window, $q, $log, PluginUtils){
   'use strict';
   var pluginName = 'Dialogs';
   var pluginTest = function(){ return $window.navigator && $window.navigator.notification; };
@@ -79,7 +79,7 @@ angular.module('app')
       $window.navigator.notification.alert(message, function(){ defer.resolve(); }, _title, _buttonName);
       return defer.promise;
     }, function(error){
-      LogSrv.trackError('pluginError:'+pluginName, error);
+      $log.error('pluginError:'+pluginName, error);
       $window.alert(message);
     });
   }
@@ -90,7 +90,7 @@ angular.module('app')
       $window.navigator.notification.confirm(message, function(buttonIndex){ defer.resolve(buttonIndex); }, _title, _buttonLabels);
       return defer.promise;
     }, function(error){
-      LogSrv.trackError('pluginError:'+pluginName, error);
+      $log.error('pluginError:'+pluginName, error);
       return _toButtonIndex($window.confirm(message));
     });
   }
@@ -101,7 +101,7 @@ angular.module('app')
       $window.navigator.notification.prompt(message, function(result){ defer.resolve(result); }, _title, _buttonLabels, _defaultText);
       return defer.promise;
     }, function(error){
-      LogSrv.trackError('pluginError:'+pluginName, error);
+      $log.error('pluginError:'+pluginName, error);
       var text = $window.prompt(message, _defaultText);
       return {buttonIndex: _toButtonIndex(text), input1: text};
     });
@@ -112,7 +112,7 @@ angular.module('app')
     return PluginUtils.onReady(pluginName, pluginTest).then(function(){
       $window.navigator.notification.beep(times);
     }, function(error){
-      LogSrv.trackError('pluginError:'+pluginName, error);
+      $log.error('pluginError:'+pluginName, error);
       if(beepFallback){
         beepFallback(times);
       } else {
@@ -185,7 +185,7 @@ angular.module('app')
 })
 
 // for Geolocation plugin : org.apache.cordova.geolocation (https://github.com/apache/cordova-plugin-geolocation)
-.factory('GeolocationPlugin', function($window, $q, $timeout, PluginUtils, LogSrv){
+.factory('GeolocationPlugin', function($window, $q, $timeout, $log, PluginUtils){
   'use strict';
   var pluginName = 'Geolocation';
   var pluginTest = function(){ return $window.navigator && $window.navigator.geolocation; };
@@ -210,7 +210,7 @@ angular.module('app')
         defer.resolve(position);
       }, function(error){
         $timeout.cancel(geolocTimeout);
-        LogSrv.trackError('pluginError:'+pluginName, error);
+        $log.error('pluginError:'+pluginName, error);
         defer.reject(error);
       }, opts);
       return defer.promise;
@@ -221,7 +221,7 @@ angular.module('app')
 })
 
 // for Camera plugin : org.apache.cordova.camera (https://github.com/apache/cordova-plugin-camera)
-.factory('CameraPlugin', function($window, $q, PluginUtils, LogSrv){
+.factory('CameraPlugin', function($window, $q, $log, PluginUtils){
   'use strict';
   var pluginName = 'Camera';
   var pluginTest = function(){ return $window.navigator && $window.navigator.camera; };
@@ -252,7 +252,7 @@ angular.module('app')
       $window.navigator.camera.getPicture(function(picture){
         defer.resolve(picture);
       }, function(error){
-        LogSrv.trackError('pluginError:'+pluginName, error);
+        $log.error('pluginError:'+pluginName, error);
         defer.reject(error);
       }, opts);
       return defer.promise;
@@ -271,7 +271,7 @@ angular.module('app')
 })
 
 // for Sharing plugin : https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin
-.factory('SharingPlugin', function($window, $q, PluginUtils, LogSrv){
+.factory('SharingPlugin', function($window, $q, $log, PluginUtils){
   'use strict';
   var pluginName = 'Sharing';
   var pluginTest = function(){ return $window.plugins && $window.plugins.socialsharing; };
@@ -289,7 +289,7 @@ angular.module('app')
       $window.plugins.socialsharing.share(message, _subject || null, _fileOrFileArray || null, _link || null, function(){
         defer.resolve();
       }, function(error){
-        LogSrv.trackError('pluginError:'+pluginName, error);
+        $log.error('pluginError:'+pluginName, error);
         defer.reject(error);
       });
       return defer.promise;
@@ -302,7 +302,7 @@ angular.module('app')
       $window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(message, _fileOrFileArray || null, _link || null, 'Tu peux coller le message par défaut si tu veux...', function(){
         defer.resolve();
       }, function(error){
-        LogSrv.trackError('pluginError:'+pluginName, error);
+        $log.error('pluginError:'+pluginName, error);
         defer.reject(error);
       });
       return defer.promise;
@@ -315,7 +315,7 @@ angular.module('app')
       $window.plugins.socialsharing.shareViaTwitter(message, _file || null, _link || null, function(){
         defer.resolve();
       }, function(error){
-        LogSrv.trackError('pluginError:'+pluginName, error);
+        $log.error('pluginError:'+pluginName, error);
         defer.reject(error);
       });
       return defer.promise;
@@ -328,7 +328,7 @@ angular.module('app')
       $window.plugins.socialsharing.shareViaEmail(message, _subject || null, null /*to*/, null /*cc*/, null /*bcc*/, _fileOrFileArray || null, function(){
         defer.resolve();
       }, function(error){
-        LogSrv.trackError('pluginError:'+pluginName, error);
+        $log.error('pluginError:'+pluginName, error);
         defer.reject(error);
       });
       return defer.promise;
@@ -340,7 +340,7 @@ angular.module('app')
 
 
 // for Media plugin : org.apache.cordova.media (https://github.com/apache/cordova-plugin-media)
-.factory('MediaPlugin', function($window, $q, $ionicPlatform, PluginUtils, LogSrv){
+.factory('MediaPlugin', function($window, $q, $ionicPlatform, $log, PluginUtils){
   'use strict';
   var pluginName = 'Media';
   var pluginTest = function(){ return $window.Media; };
@@ -356,7 +356,7 @@ angular.module('app')
         if(onStop){onStop();}
       };
       var mediaError = function(error){
-        LogSrv.trackError('pluginError:'+pluginName, {
+        $log.error('pluginError:'+pluginName, {
           src: src,
           code: error.code,
           message: errorToMessage(error.code)
@@ -393,7 +393,7 @@ angular.module('app')
 })
 
 // for DeviceAccounts plugin : https://github.com/loicknuchel/cordova-device-accounts
-.factory('DeviceAccountsPlugin', function($window, $q, PluginUtils, LogSrv){
+.factory('DeviceAccountsPlugin', function($window, $q, $log, PluginUtils){
   'use strict';
   var pluginName = 'DeviceAccounts';
   var pluginTest = function(){ return $window.plugins && $window.plugins.DeviceAccounts; };
@@ -408,7 +408,7 @@ angular.module('app')
       $window.plugins.DeviceAccounts.get(function(accounts){
         defer.resolve(accounts);
       }, function(error){
-        LogSrv.trackError('pluginError:'+pluginName, error);
+        $log.error('pluginError:'+pluginName, error);
         defer.reject(error);
       });
       return defer.promise;
@@ -421,7 +421,7 @@ angular.module('app')
       $window.plugins.DeviceAccounts.getEmail(function(email){
         defer.resolve(email);
       }, function(error){
-        LogSrv.trackError('pluginError:'+pluginName, error);
+        $log.error('pluginError:'+pluginName, error);
         defer.reject(error);
       });
       return defer.promise;

@@ -155,10 +155,12 @@ var Logger = (function(){
         }
       }
       if(name === 'error' && config.debug && event.data.error){
-        window.alert('Error: '+event.data.type+'\n'+event.data.error.message+'\nPlease contact: '+Config.emailSupport);
+        var msg = event.data && event.data.error ? (event.data.error.message ? event.data.error.message : event.data.error) : '';
+        window.alert('Error: '+event.data.type+'\n'+msg+'\nPlease contact: '+Config.emailSupport);
       }
       if(name === 'exception'){
-        window.alert('Exception: '+event.message+'\nPlease contact: '+Config.emailSupport);
+        var msg = event.data && event.data.message ? event.data.message : event.message;
+        window.alert('Exception: '+msg+'\nPlease contact: '+Config.emailSupport);
       }
     }
   }

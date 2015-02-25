@@ -61,7 +61,6 @@ As it's only a template project, you may want to change its name. For that, you 
 
 - add angular authentication
 - sidemenu + tabs
-- replace LogSrv service with a $log extention
 - add tests for plugins services
 - add standard usefull plugins :
     - org.apache.cordova.splashscreen ([ngCordova](http://ngcordova.com/docs/plugins/splashscreen/))
