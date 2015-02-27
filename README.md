@@ -63,8 +63,7 @@ As it's only a template project, you may want to change its name. For that, you 
 ## TODO
 
 - improve _log.js : get device uuid instead of userId...
-- add angular authentication
-- sidemenu + tabs
+- remplacer les <ion-header-bar> par des <ion-nav-bar>
 - add tests & comments (plugins services & mocks, utils services...)
 - add standard usefull plugins :
     - org.apache.cordova.splashscreen ([ngCordova](http://ngcordova.com/docs/plugins/splashscreen/))

@@ -13,7 +13,7 @@ angular.module('app')
     data.error = null;
     data.loading = true;
     AuthSrv.login(credentials).then(function(){
-      $state.go('app.twitts');
+      $state.go('app.tabs.twitts');
       data.credentials.password = '';
       data.error = null;
       data.loading = false;
@@ -33,6 +33,10 @@ angular.module('app')
       $state.go('login');
     });
   };
+})
+
+.controller('TabsCtrl', function($scope){
+  'use strict';
 })
 
 .controller('TwittsCtrl', function($scope, $window, $ionicModal, $ionicPopover, $ionicActionSheet, $log, TwittSrv){
@@ -157,8 +161,16 @@ angular.module('app')
     if(twitt){
       data.twitt = twitt;
     } else {
-      $state.go('app.twitts');
+      $state.go('app.tabs.twitts');
     }
   });
+})
+
+.controller('ChatCtrl', function($scope){
+  'use strict';
+})
+
+.controller('NotifsCtrl', function($scope){
+  'use strict';
 });
 

@@ -16,27 +16,55 @@ angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
     templateUrl: 'views/menu.html',
     controller: 'AppCtrl'
   })
-  .state('app.twitts', {
+  .state('app.tabs', {
+    url: '/tabs',
+    abstract: true,
+    views: {
+      'menuContent': {
+        templateUrl: 'views/tabs.html',
+        controller: 'TabsCtrl'
+      }
+    }
+  })
+  .state('app.tabs.twitts', {
     url: '/twitts',
     views: {
-      'menuContent' :{
+      'twitts-tab': {
         templateUrl: 'views/twitts.html',
         controller: 'TwittsCtrl'
       }
     }
   })
-  .state('app.twitt', {
+  .state('app.tabs.twitt', {
     url: '/twitt/:twittId',
     views: {
-      'menuContent' :{
+      'twitts-tab': {
         templateUrl: 'views/twitt.html',
         controller: 'TwittCtrl'
+      }
+    }
+  })
+  .state('app.tabs.chat', {
+    url: '/chat',
+    views: {
+      'chat-tab': {
+        templateUrl: 'views/chat.html',
+        controller: 'ChatCtrl'
+      }
+    }
+  })
+  .state('app.tabs.notifs', {
+    url: '/notifs',
+    views: {
+      'notifs-tab': {
+        templateUrl: 'views/notifs.html',
+        controller: 'NotifsCtrl'
       }
     }
   });
 
   if(AuthSrvProvider.isLogged()){
-    $urlRouterProvider.otherwise('/app/twitts');
+    $urlRouterProvider.otherwise('/app/tabs/chat');
   } else {
     $urlRouterProvider.otherwise('/login');
   }
@@ -59,7 +87,7 @@ angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
     if(toState.name === 'login' && logged){
       event.preventDefault();
       $log.log('IllegalAccess', 'Already logged in !');
-      $state.go('app.twitts');
+      $state.go('app.tabs.twitts');
     } else if(toState.name !== 'login' && !logged){
       event.preventDefault();
       $log.log('IllegalAccess', 'Not allowed to access to <'+toState.name+'> state !');

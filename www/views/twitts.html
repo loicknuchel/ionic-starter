@@ -1,9 +1,9 @@
 <ion-view>
-  <ion-header-bar class="bar-positive">
+  <ion-header-bar class="bar-calm">
     <div class="buttons">
       <button menu-toggle="left" class="button button-icon ion-navicon" ng-hide="$exposeAside.active"></button>
     </div>
-    <h1 class="title">Home</h1>
+    <h1 class="title">Timeline</h1>
     <div class="buttons">
       <button class="button button-icon ion-close-circled" ng-click="userList.fn.hideAll()" ng-show="userList.state.showDelete || userList.state.showReorder"></button>
       <button class="button button-icon ion-more" ng-click="fn.showOptions($event)"></button>
@@ -13,7 +13,7 @@
   <ion-content>
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="fn.refresh()"></ion-refresher>
     <ion-list show-delete="userList.state.showDelete" show-reorder="userList.state.showReorder">
-      <ion-item class="item-avatar" ng-repeat="twitt in data.twitts" item="twitt" ui-sref="app.twitt({twittId: twitt.id})" on-hold="fn.moreOptions(twitt)">
+      <ion-item class="item-avatar" ng-repeat="twitt in data.twitts" item="twitt" ui-sref="app.tabs.twitt({twittId: twitt.id})" on-hold="fn.moreOptions(twitt)">
         <img ng-src="{{twitt.avatar}}">
         <h2>{{twitt.user}}</h2>
         <p>{{twitt.content}}</p>
