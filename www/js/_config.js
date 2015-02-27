@@ -12,6 +12,9 @@ var Config = (function(){
     parse: {
       applicationId: '',
       restApiKey: ''
+    },
+    gcm: {
+      senderID: '263462318850' // Google project number
     }
   };
   return cfg;

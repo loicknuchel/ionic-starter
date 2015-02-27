@@ -1,21 +1,17 @@
-if(!window.plugins){window.plugins = {};}
-
-
 // for Device plugin : org.apache.cordova.device (https://github.com/apache/cordova-plugin-device)
-if(!window.device){
-  window.device = {
-    available: true,
-    cordova: "3.6.4",
-    manufacturer: "LGE",
-    model: "Nexus 4",
-    // platform: "Android",
-    uuid: "891b8e516ae6bd65",
-    version: "5.0.1"
-  };
-}
+window.device = {
+  available: true,
+  cordova: "3.6.4",
+  manufacturer: "LGE",
+  model: "Nexus 4",
+  // platform: "Android",
+  uuid: "891b8e516ae6bd65",
+  version: "5.0.1"
+};
 
 
 // for Dialogs plugin : org.apache.cordova.dialogs (https://github.com/apache/cordova-plugin-dialogs)
+if(!window.navigator){window.navigator = {};}
 window.navigator.notification = (function(){
   var ctx = new(window.audioContext || window.webkitAudioContext);
   function html5Beep(callback){
@@ -59,6 +55,7 @@ window.navigator.notification = (function(){
 
 
 // for Toast plugin : https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+if(!window.plugins){window.plugins = {};}
 window.plugins.toast = {
   show: function(message, duration, position, successCallback, errorCallback){
     // durations : short, long
@@ -177,6 +174,7 @@ window.plugin.notification.local = (function(){
 
 
 // for Camera plugin : org.apache.cordova.camera (https://github.com/apache/cordova-plugin-camera)
+if(!window.navigator){window.navigator = {};}
 window.navigator.camera = (function(){
   window.Camera = {
     DestinationType: {
@@ -305,6 +303,7 @@ window.parsePlugin = (function(){
 
 
 // for DeviceAccounts plugin : https://github.com/loicknuchel/cordova-device-accounts
+if(!window.plugins){window.plugins = {};}
 window.plugins.DeviceAccounts = {
   get: function(onSuccess, onFail){ onSuccess([{type:'com.google', name:'test@example.com'}]); },
   getByType: function(type, onSuccess, onFail){ onSuccess([{type:'com.google', name:'test@example.com'}]); },

@@ -52,7 +52,7 @@ angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
 
 .constant('Config', Config)
 
-.run(function($rootScope, $state, $log, AuthSrv){
+.run(function($rootScope, $state, $log, AuthSrv, UserSrv, PushPlugin, ToastPlugin, Config){
   'use strict';
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
     var logged = AuthSrv.isLogged();
@@ -65,6 +65,18 @@ angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
       $log.log('IllegalAccess', 'Not allowed to access to <'+toState.name+'> state !');
       $state.go('login');
     }
+  });
+
+  // registrationId should be uploaded to the server, it is required to send push notification
+  PushPlugin.register(Config.gcm.senderID).then(function(registrationId){
+    return UserSrv.get().then(function(user){
+      user.pushId = registrationId;
+      return UserSrv.set(user);
+    });
+  });
+  PushPlugin.onNotification(function(notification){
+    ToastPlugin.show('notificationReceived: '+notification.title);
+    console.log('notificationReceived', notification);
   });
 });
 
