@@ -28,15 +28,21 @@ angular.module('app')
 .controller('AppCtrl', function($scope, $state, AuthSrv){
   'use strict';
   $scope.logout = function(){
-    console.log('logout()');
     AuthSrv.logout().then(function(){
       $state.go('login');
     });
   };
 })
 
-.controller('TabsCtrl', function($scope){
+.controller('TabsCtrl', function($scope, PushPlugin){
   'use strict';
+  var data = {};
+  $scope.data = data;
+
+  data.notifCount = 0;
+  PushPlugin.onNotification(function(notification){
+    data.notifCount++;
+  });
 })
 
 .controller('TwittsCtrl', function($scope, $window, $ionicModal, $ionicPopover, $ionicActionSheet, $log, TwittSrv){
@@ -170,29 +176,26 @@ angular.module('app')
   'use strict';
 })
 
-.controller('NotifsCtrl', function($scope, $http, UserSrv, ToastPlugin){
+.controller('NotifsCtrl', function($scope, UserSrv, PushPlugin, ToastPlugin){
   'use strict';
   var data = {}, fn = {};
   $scope.data = data;
   $scope.fn = fn;
 
-  UserSrv.get().then(function(user){
-    data.user = user;
+  data.notifications = [];
+  PushPlugin.onNotification(function(notification){
+    notification.time = new Date();
+    data.notifications.push(notification);
   });
 
   // /!\ To use this, you should add Push plugin : ionic plugin add https://github.com/phonegap-build/PushPlugin
-  fn.sendPush = function(pushData){
-    var content = {
-      registration_ids: [data.user.pushId],
-      data: pushData
-    };
-    console.log('content', content);
-    $http.post('https://android.googleapis.com/gcm/send', content, {
-      headers: {
-        Authorization: 'key=AIzaSyDzM4XzyW9HWJNol9OePz4cAXi7QbVANOs'
-      }
-    }).then(function(){
-      ToastPlugin.show('Notification posted !');
+  fn.sendPush = function(infos){
+    UserSrv.get().then(function(user){
+      PushPlugin.sendPush([user.pushId], infos).then(function(sent){
+        if(sent){
+          ToastPlugin.show('Notification posted !');
+        }
+      });
     });
   };
 });

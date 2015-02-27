@@ -14,7 +14,9 @@ var Config = (function(){
       restApiKey: ''
     },
     gcm: {
-      senderID: '263462318850' // Google project number
+      // create project here : https://console.developers.google.com/
+      senderID: '263462318850', // Google project number
+      apiServerKey: 'AIzaSyDzM4XzyW9HWJNol9OePz4cAXi7QbVANOs' // used only to send notifications
     }
   };
   return cfg;
