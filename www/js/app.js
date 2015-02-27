@@ -1,10 +1,15 @@
 angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
 
-.config(function($stateProvider, $urlRouterProvider, $provide) {
+.config(function($stateProvider, $urlRouterProvider, $provide, $httpProvider, AuthSrvProvider) {
   'use strict';
   // ParseUtilsProvider.initialize(Config.parse.applicationId, Config.parse.restApiKey);
 
   $stateProvider
+  .state('login', {
+    url: '/login',
+    templateUrl: 'views/login.html',
+    controller: 'LoginCtrl'
+  })
   .state('app', {
     url: '/app',
     abstract: true,
@@ -30,17 +35,36 @@ angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
     }
   });
 
-  $urlRouterProvider.otherwise('/app/twitts');
+  if(AuthSrvProvider.isLogged()){
+    $urlRouterProvider.otherwise('/app/twitts');
+  } else {
+    $urlRouterProvider.otherwise('/login');
+  }
 
   // improve angular logger
   $provide.decorator('$log', ['$delegate', 'customLogger', function($delegate, customLogger){
     return customLogger($delegate);
   }]);
+
+  // configure $http requests according to authentication
+  $httpProvider.interceptors.push('AuthInterceptor');
 })
 
 .constant('Config', Config)
 
-.run(function() {
+.run(function($rootScope, $state, $log, AuthSrv){
   'use strict';
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+    var logged = AuthSrv.isLogged();
+    if(toState.name === 'login' && logged){
+      event.preventDefault();
+      $log.log('IllegalAccess', 'Already logged in !');
+      $state.go('app.twitts');
+    } else if(toState.name !== 'login' && !logged){
+      event.preventDefault();
+      $log.log('IllegalAccess', 'Not allowed to access to <'+toState.name+'> state !');
+      $state.go('login');
+    }
+  });
 });
 

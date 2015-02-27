@@ -2,6 +2,8 @@ angular.module('app')
 
 .factory('customLogger',function(){
   function track(name, data, _time){
+    if(typeof data === 'string'){ data = {message: data}; }
+
     var event = {};
     if(data)  { event.data = data;  }
     if(_time) { event.time = _time; }
