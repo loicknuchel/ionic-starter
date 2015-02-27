@@ -80,6 +80,102 @@ window.plugins.toast = {
 // no mock, this is natively supported by browser :)
 
 
+// for BackgroundGeolocation plugin : https://github.com/christocracy/cordova-plugin-background-geolocation
+if(!window.plugins){window.plugins = {};}
+window.plugins.backgroundGeoLocation = (function(){
+  var config = null;
+  var callback = null;
+  var interval = null;
+  return {
+    configure: function(callbackFn, failureFn, opts){config = opts; callback = callbackFn;},
+    start: function(){
+      if(interval === null){
+        interval = setInterval(function(){
+          window.navigator.geolocation.getCurrentPosition(function(position){
+            callback(position);
+          });
+        }, 3000);
+      }
+    },
+    stop: function(){
+      if(interval !== null){
+        clearInterval(interval);
+        interval = null;
+      }
+    },
+    finish: function(){}
+  };
+})();
+
+
+// for LocalNotification plugin : de.appplant.cordova.plugin.local-notification (https://github.com/katzer/cordova-plugin-local-notifications/)
+if(!window.plugin){window.plugin = {};}
+if(!window.plugin.notification){window.plugin.notification = {};}
+window.plugin.notification.local = (function(){
+  var notifs = {};
+  var defaults = {
+    message: '',
+    title: '',
+    autoCancel: false,
+    badge: 0,
+    id: '0',
+    json: '',
+    repeat: '',
+    icon: 'icon',
+    smallIcon: null,
+    ongoing: false,
+    sound: 'TYPE_NOTIFICATION'
+  };
+
+  function withDefaults(opts){
+    var res = JSON.parse(JSON.stringify(defaults));
+    for(var i in opts){
+      res[i] = opts[i];
+    }
+    return res;
+  }
+
+  var ret = {
+    hasPermission: function(callback, scope){if(callback){callback(true);}},
+    registerPermission: function(callback, scope){if(callback){callback(true);}},
+    add: function(opts, callback, scope){
+      var params = withDefaults(opts);
+      if(ret.onadd){ret.onadd(params.id, 'foreground', params.json);}
+      notifs[params.id] = params;
+      if(callback){callback();}
+    },
+    cancel: function(id, callback, scope){
+      if(ret.oncancel){ret.oncancel(id, 'foreground', notifs[id].json);}
+      delete notifs[id];
+      if(callback){callback();}
+    },
+    cancelAll: function(callback, scope){
+      for(var i in notifs){
+        if(ret.oncancel){ret.oncancel(notifs[i].id, 'foreground', notifs[i].json);}
+        delete notifs[i];
+      }
+      if(callback){callback();}
+    },
+    isScheduled: function(id, callback, scope){
+      if(callback){callback(!!notifs[id]);}
+    },
+    getScheduledIds: function(callback, scope){
+      if(callback){
+        var ids = [];
+        for(var i in notifs){ ids.push(notifs[i].id); }
+        callback(ids);
+      }
+    },
+    isTriggered: function(id, callback, scope){if(callback){callback(false);}}, // TODO
+    getTriggeredIds: function(callback, scope){if(callback){callback([]);}}, // TODO
+    getDefaults: function(){return JSON.parse(JSON.stringify(defaults));},
+    setDefaults: function(opts){ defaults = withDefaults(opts); }
+  };
+
+  return ret;
+})();
+
+
 // for Camera plugin : org.apache.cordova.camera (https://github.com/apache/cordova-plugin-camera)
 window.navigator.camera = (function(){
   window.Camera = {
@@ -167,6 +263,45 @@ window.Media = function(src, mediaSuccess, mediaError, mediaStatus){
     stop: function(){ sound.pause(); if(mediaSuccess){mediaSuccess();} } // TODO
   };
 };
+
+
+// for Push plugin : https://github.com/phonegap-build/PushPlugin
+if(!window.plugins){window.plugins = {};}
+window.plugins.pushNotification = (function(){
+  return {
+    register: function(successCallback, errorCallback, options){
+      setTimeout(function(){
+        if(successCallback){
+          successCallback('OK');
+        }
+        if(options && options.ecb){
+          eval(options.ecb)({
+            event: 'registered',
+            regid: 'registration_id'
+          });
+        }
+      }, 0);
+    },
+    setApplicationIconBadgeNumber: function(successCallback, errorCallback, badge){if(errorCallback){errorCallback('Invalid action : setApplicationIconBadgeNumber');}},
+    showToastNotification: function(successCallback, errorCallback, options){if(errorCallback){errorCallback('Invalid action : showToastNotification');}},
+    unregister: function(successCallback, errorCallback, options){}
+  };
+})();
+
+
+// for Parse plugin : https://github.com/umurgdk/phonegap-parse-plugin
+window.parsePlugin = (function(){
+  var subscriptions = [];
+  return {
+    initialize: function(appId, clientKey, successCallback, errorCallback){successCallback();},
+    getInstallationId: function(successCallback, errorCallback){successCallback('7ff61742-ab67-42aa-bf48-d821afb44022');},
+    getInstallationObjectId: function(successCallback, errorCallback){successCallback('ED4j8uPOth');},
+    subscribe: function(channel, successCallback, errorCallback){ subscriptions.push(channel); successCallback(); },
+    unsubscribe: function(channel, successCallback, errorCallback){ subscriptions.splice(subscriptions.indexOf(channel), 1); successCallback(); },
+    getSubscriptions: function(successCallback, errorCallback){successCallback(subscriptions);},
+    onMessage: function(successCallback, errorCallback){}
+  };
+})();
 
 
 // for DeviceAccounts plugin : https://github.com/loicknuchel/cordova-device-accounts

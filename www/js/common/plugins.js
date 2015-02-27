@@ -220,6 +220,103 @@ angular.module('app')
   return service;
 })
 
+// for BackgroundGeolocation plugin : https://github.com/christocracy/cordova-plugin-background-geolocation
+.factory('BackgroundGeolocationPlugin', function($window, $q, $log, GeolocationPlugin, PluginUtils){
+  'use strict';
+  var pluginName = 'BackgroundGeolocation';
+  var pluginTest = function(){ return $window.plugins && $window.plugins.backgroundGeoLocation; };
+  var service = {
+    enable: enable,
+    disable: stop,
+    configure: configure,
+    start: start,
+    stop: stop
+  };
+  var defaultOpts = {
+    desiredAccuracy: 10,
+    stationaryRadius: 20,
+    distanceFilter: 30,
+    notificationTitle: 'Location tracking',
+    notificationText: 'ENABLED',
+    activityType: 'AutomotiveNavigation',
+    debug: true,
+    stopOnTerminate: true
+  };
+
+  // postLocation function should take a 'location' parameter and return a promise
+  function configure(opts, postLocation){
+    return PluginUtils.onReady(pluginName, pluginTest).then(function(){
+      var callbackFn = function(location){
+        if(postLocation){
+          postLocation(location).then(function(){
+            $window.plugins.backgroundGeoLocation.finish();
+          }, function(error){
+            $log.error('pluginError:'+pluginName, error);
+            $window.plugins.backgroundGeoLocation.finish();
+          });
+        } else {
+          $window.plugins.backgroundGeoLocation.finish();
+        }
+      };
+      var failureFn = function(error){
+        $log.error('pluginError:'+pluginName, error);
+      };
+      var options = angular.extend({}, defaultOpts, opts);
+      $window.plugins.backgroundGeoLocation.configure(callbackFn, failureFn, options);
+      return GeolocationPlugin.getCurrentPosition();
+    });
+  }
+
+  function start(){
+    return PluginUtils.onReady(pluginName, pluginTest).then(function(){
+      $window.plugins.backgroundGeoLocation.start();
+    });
+  }
+
+  function stop(){
+    return PluginUtils.onReady(pluginName, pluginTest).then(function(){
+      $window.plugins.backgroundGeoLocation.stop();
+    });
+  }
+
+  function enable(opts, postLocation){
+    return configure(opts, postLocation).then(function(){
+      return start();
+    });
+  }
+
+  return service;
+})
+
+// for LocalNotification plugin : de.appplant.cordova.plugin.local-notification (https://github.com/katzer/cordova-plugin-local-notifications/)
+.factory('LocalNotificationPlugin', function($window, $q, PluginUtils){
+  'use strict';
+  var pluginName = 'LocalNotification';
+  var pluginTest = function(){ return $window.plugin && $window.plugin.notification && $window.plugin.notification.local; };
+  var service = {
+    add: add,
+    cancel: cancel
+  };
+
+  function add(opts){
+    return PluginUtils.onReady(pluginName, pluginTest).then(function(){
+      $window.plugin.notification.local.add(opts);
+    });
+  }
+
+  function cancel(id){
+    return PluginUtils.onReady(pluginName, pluginTest).then(function(){
+      var defer = $q.defer();
+      $window.plugin.notification.local.cancel(id, function(){
+        defer.resolve();
+      });
+      return defer.promise;
+    });
+  }
+
+  return service;
+})
+
 // for Camera plugin : org.apache.cordova.camera (https://github.com/apache/cordova-plugin-camera)
 .factory('CameraPlugin', function($window, $q, $log, PluginUtils){
   'use strict';
@@ -387,6 +484,143 @@ angular.module('app')
     else if(code === 3){return 'MediaError.MEDIA_ERR_DECODE';}
     else if(code === 4){return 'MediaError.MEDIA_ERR_NONE_SUPPORTED';}
     else {return 'Unknown code <'+code+'>';}
+  }
+
+  return service;
+})
+
+
+// for Push plugin : https://github.com/phonegap-build/PushPlugin
+.factory('PushPlugin', function($q, $window, $log, PluginUtils){
+  'use strict';
+  var pluginName = 'Push';
+  var pluginTest = function(){ return $window.plugins && $window.plugins.pushNotification; };
+  var callbackCurRef = 1;
+  var callbackList = {};
+  var service = {
+    type: {
+      ALL: 'all',
+      MESSAGE: 'message',
+      REGISTERED: 'registered',
+      ERROR: 'error'
+    },
+    register: register,
+    onNotification: onNotification,
+    cancel: cancel
+  };
+
+  function register(senderID){
+    return PluginUtils.onReady(pluginName, pluginTest).then(function(){
+      var defer = $q.defer();
+      var callbackRef = onNotification(function(notification){
+        defer.resolve(notification.regid);
+        cancel(callbackRef);
+      }, service.type.REGISTERED);
+      $window.plugins.pushNotification.register(function(data){}, function(err){ registerDefer.reject(err); }, {
+        senderID: senderID,
+        ecb: 'onPushNotification'
+      });
+      return defer.promise;
+    });
+  }
+
+  function onNotification(callback, _type){
+    return PluginUtils.onReady(pluginName, pluginTest).then(function(){
+      var id = callbackCurRef++;
+      callbackList[id] = {fn: callback, type: _type || service.type.MESSAGE};
+      return id;
+    });
+  }
+
+  function cancel(id){
+    return PluginUtils.onReady(pluginName, pluginTest).then(function(){
+      delete callbackList[id];
+    });
+  }
+
+  $window.onPushNotification = function(notification){
+    if(notification.event === service.type.MESSAGE){} // normal notification
+    else if(notification.event === service.type.REGISTERED){} // registration acknowledgment
+    else if(notification.event === service.type.ERROR){ $log.error('GCM error', notification); } // GCM error
+    else { $log.error('unknown GCM event has occurred', notification); } // unknown notification
+
+    for(var i in callbackList){
+      if(callbackList[i].type === service.type.ALL || callbackList[i].type === notification.event){
+        callbackList[i].fn(notification);
+      }
+    }
+  };
+
+  // iOS only
+  function setApplicationIconBadgeNumber(badgeNumber){
+    return PluginUtils.onReady(pluginName, pluginTest).then(function(){
+      var defer = $q.defer();
+      $window.plugins.pushNotification.setApplicationIconBadgeNumber(function(a,b,c){
+        console.log('success a', a);
+        console.log('success b', b);
+        console.log('success c', c);
+        defer.resolve();
+      }, function(err){
+        // on Android : "Invalid action : setApplicationIconBadgeNumber"
+        defer.reject(err);
+      }, badgeNumber);
+      return defer.promise;
+    });
+  }
+
+  // iOS only
+  function showToastNotification(options){
+    return PluginUtils.onReady(pluginName, pluginTest).then(function(){
+      var defer = $q.defer();
+      $window.plugins.pushNotification.showToastNotification(function(a,b,c){
+        console.log('success a', a);
+        console.log('success b', b);
+        console.log('success c', c);
+        defer.resolve();
+      }, function(err){
+        // on Android : "Invalid action : showToastNotification"
+        defer.reject(err);
+      }, options);
+      return defer.promise;
+    });
+  }
+
+  return service;
+})
+
+// for Parse plugin : https://github.com/umurgdk/phonegap-parse-plugin
+.factory('ParsePlugin', function($window, $q, $log, PluginUtils){
+  'use strict';
+  var pluginName = 'Parse';
+  var pluginTest = function(){ return $window.parsePlugin; };
+  var service = {
+    initialize:               function(appId, clientKey)  { return _exec($window.parsePlugin.initialize, appId, clientKey); },
+    getInstallationId:        function()                  { return _exec($window.parsePlugin.getInstallationId);            },
+    getInstallationObjectId:  function()                  { return _exec($window.parsePlugin.getInstallationObjectId);      },
+    subscribe:                function(channel)           { return _exec($window.parsePlugin.subscribe, channel);           },
+    unsubscribe:              function(channel)           { return _exec($window.parsePlugin.unsubscribe, channel);         },
+    getSubscriptions:         function()                  { return _exec($window.parsePlugin.getSubscriptions);             },
+    onMessage:                function()                  { return _exec($window.parsePlugin.onMessage);                    }
+  };
+
+  function _exec(fn){
+    return PluginUtils.onReady(pluginName, pluginTest).then(function(){
+      var defer = $q.defer();
+
+      var fnArgs = [];
+      // take all arguments except the first one
+      for(var i=1; i<arguments.length; i++){
+        fnArgs.push(arguments[i]);
+      }
+      fnArgs.push(function(res){ defer.resolve(res); });
+      fnArgs.push(function(error){
+        $log.error('pluginError:'+pluginName, error);
+        defer.reject(error);
+      });
+
+      fn.apply(null, fnArgs);
+      return defer.promise;
+    });
   }
 
   return service;

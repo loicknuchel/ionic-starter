@@ -16,7 +16,7 @@ Feel free to open an issue for any question or suggestion you could have.
 - `ionic setup sass` : use sass
 - `ionic serve` : start the app on your browser
 
-For the impatients, you can run all this commands in one time : `git clone git@github.com:loicknuchel/ionic-starter.git && cd ionic-starter && bower install && npm install gulp && ionic setup sass && ionic serve` ;)
+For the impatients, you can run all these commands in one time : `git clone git@github.com:loicknuchel/ionic-starter.git && cd ionic-starter && bower install && npm install gulp && ionic setup sass && ionic serve`
 
 To run the app on your android device :
 
@@ -28,11 +28,15 @@ Once again, in one command : `ionic platform add android && ionic resources && i
 
 ## Main features
 
-
+- User authantication
+- Storage helpers & caching
+- REST & Parse Api helpers
+- Error handling & async remote logger
 - Angular wrappers & browser mocks for plugins :
     - [org.apache.cordova.device](https://github.com/apache/cordova-plugin-device) ([ngCordova](http://ngcordova.com/docs/plugins/device/))
     - [org.apache.cordova.dialogs](https://github.com/apache/cordova-plugin-dialogs) ([ngCordova](http://ngcordova.com/docs/plugins/dialogs/))
     - [https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin](https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin) ([ngCordova](http://ngcordova.com/docs/plugins/toast/))
+    - [org.apache.cordova.inappbrowser](https://github.com/apache/cordova-plugin-inappbrowser) ([ngCordova](http://ngcordova.com/docs/plugins/inAppBrowser/))
     - [org.apache.cordova.geolocation](https://github.com/apache/cordova-plugin-geolocation)
     - [org.apache.cordova.camera](https://github.com/apache/cordova-plugin-camera)
     - [https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
