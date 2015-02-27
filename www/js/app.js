@@ -64,7 +64,7 @@ angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
   });
 
   if(AuthSrvProvider.isLogged()){
-    $urlRouterProvider.otherwise('/app/tabs/chat');
+    $urlRouterProvider.otherwise('/app/tabs/twitts');
   } else {
     $urlRouterProvider.otherwise('/login');
   }
@@ -95,6 +95,7 @@ angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
     }
   });
 
+  // /!\ To use this, you should add Push plugin : ionic plugin add https://github.com/phonegap-build/PushPlugin
   // registrationId should be uploaded to the server, it is required to send push notification
   PushPlugin.register(Config.gcm.senderID).then(function(registrationId){
     return UserSrv.get().then(function(user){
@@ -103,8 +104,8 @@ angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
     });
   });
   PushPlugin.onNotification(function(notification){
-    ToastPlugin.show('notificationReceived: '+notification.title);
-    console.log('notificationReceived', notification);
+    ToastPlugin.show('Notification received: '+notification.payload.title);
+    console.log('Notification received', notification);
   });
 });
 

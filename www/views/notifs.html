@@ -7,6 +7,20 @@
   </ion-header-bar>
 
   <ion-content>
-    
+    <form ng-submit="fn.sendPush(data.push)">
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Title</span>
+          <input type="text" placeholder="New notification is here" ng-model="data.push.title">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Message</span>
+          <textarea placeholder="Your should look at this..." ng-model="data.push.message"></textarea>
+        </label>
+        <div class="padding">
+          <button type="submit" class="button button-block button-calm">Send (android only !)</button>
+        </div>
+      </div>
+    </form>
   </ion-content>
 </ion-view>

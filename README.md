@@ -62,6 +62,7 @@ As it's only a template project, you may want to change its name. For that, you 
 
 ## TODO
 
+- tell Ionic CLI to not add empty cordova.js :(
 - improve _log.js : get device uuid instead of userId...
 - remplacer les <ion-header-bar> par des <ion-nav-bar>
 - add tests & comments (plugins services & mocks, utils services...)
