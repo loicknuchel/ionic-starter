@@ -12,13 +12,13 @@ angular.module('app')
 
   return function($delegate){
     return {
-      debug: function(){$delegate.debug(arguments);},
+      debug: function(){$delegate.debug.apply(null, arguments);},
       log: function(){
         track(arguments[0], arguments[1], arguments[2]);
-        $delegate.log(arguments);
+        $delegate.log.apply(null, arguments);
       },
-      info: function(){$delegate.info(arguments);},
-      warn:function(){$delegate.warn(arguments);},
+      info: function(){$delegate.info.apply(null, arguments);},
+      warn:function(){$delegate.warn.apply(null, arguments);},
       error: function(){
         if(typeof arguments[0] === 'string'){
           track('error', {type: arguments[0], error: arguments[1]}, arguments[2]);
@@ -34,7 +34,7 @@ angular.module('app')
           }
           track('exception', data);
         }
-        $delegate.error(arguments);
+        $delegate.error.apply(null, arguments);
       }
     };
   };
