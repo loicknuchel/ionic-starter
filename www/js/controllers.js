@@ -40,6 +40,7 @@ angular.module('app')
   $scope.data = data;
 
   data.notifCount = 0;
+  // /!\ To use this, you should add Push plugin : ionic plugin add https://github.com/phonegap-build/PushPlugin
   PushPlugin.onNotification(function(notification){
     data.notifCount++;
   });
@@ -183,12 +184,12 @@ angular.module('app')
   $scope.fn = fn;
 
   data.notifications = [];
+  // /!\ To use this, you should add Push plugin : ionic plugin add https://github.com/phonegap-build/PushPlugin
   PushPlugin.onNotification(function(notification){
     notification.time = new Date();
     data.notifications.push(notification);
   });
 
-  // /!\ To use this, you should add Push plugin : ionic plugin add https://github.com/phonegap-build/PushPlugin
   fn.sendPush = function(infos){
     UserSrv.get().then(function(user){
       PushPlugin.sendPush([user.pushId], infos).then(function(sent){

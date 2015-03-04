@@ -65,8 +65,12 @@ As it's only a template project, you may want to change its name. For that, you 
 - tell Ionic CLI to not add empty cordova.js :(
 - improve _log.js : get device uuid instead of userId...
 - remplacer les <ion-header-bar> par des <ion-nav-bar>
-- add tests & comments (plugins services & mocks, utils services...)
+- Geolocation plugin : check if geolocation is enabled
+- add tests & comments (plugins services & mocks, utils services...) (http://forum.ionicframework.com/t/unit-tests-for-ionic/3711/5)
 - add standard usefull plugins :
+    - http://mcgivery.com/using-custom-url-schemes-ionic-framework-app/
+    - sqlite db (https://blog.nraboy.com/2015/01/deploy-ionic-framework-app-pre-filled-sqlite-db/)
+    - webintent
     - org.apache.cordova.splashscreen ([ngCordova](http://ngcordova.com/docs/plugins/splashscreen/))
     - de.appplant.cordova.plugin.local-notification ([ngCordova](http://ngcordova.com/docs/plugins/localNotification/))
     - org.apache.cordova.statusbar ([ngCordova](http://ngcordova.com/docs/plugins/statusbar/))
@@ -74,6 +78,15 @@ As it's only a template project, you may want to change its name. For that, you 
     - https://github.com/whiteoctober/cordova-plugin-app-version ([ngCordova](http://ngcordova.com/docs/plugins/appVersion/))
 
 ## Infos
+
+### Browser development
+
+- Chrome cordova : https://chrome.google.com/webstore/detail/cordova-mocks/iigcccneenmnplhhfhaeahiofeeeifpn (https://github.com/pbernasconi/chrome-cordova)
+
+### Android debug
+
+- android remote debug : https://developer.chrome.com/devtools/docs/remote-debugging
+- activate developer mode on android
 
 ### Specific urls
 
@@ -87,7 +100,12 @@ Use these custom urls to open other apps using inappbrowser (org.apache.cordova.
 
 see http://stackoverflow.com/questions/26271313/tel-sms-and-mailto-no-longer-working-in-android-after-upgrading-to-cordo
 
-### Android debug
+### Other links
 
-- android remote debug : https://developer.chrome.com/devtools/docs/remote-debugging
-- activate developer mode on android
+- Push
+    - https://github.com/hollyschinsky/PushNotificationSample
+- Unit test
+    - https://bradb.net/unit-testing-with-the-ionic-framework/
+    - http://forum.ionicframework.com/t/ionic-and-karma-unittest/8799
+- Data
+    - PouchDB (http://devgirl.org/2014/12/30/sync-data-using-pouchdb-in-your-ionic-framework-app/)
