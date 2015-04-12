@@ -28,7 +28,7 @@ Once again, in one command : `ionic platform add android && ionic resources && i
 
 ## Main features
 
-- User authantication
+- User authentication
 - Storage helpers & caching
 - REST & Parse Api helpers
 - Error handling & async remote logger
@@ -64,7 +64,7 @@ As it's only a template project, you may want to change its name. For that, you 
 
 - tell Ionic CLI to not add empty cordova.js :(
 - improve _log.js : get device uuid instead of userId...
-- remplacer les <ion-header-bar> par des <ion-nav-bar>
+- Repkace <ion-header-bar> with <ion-nav-bar>
 - Geolocation plugin : check if geolocation is enabled
 - add tests & comments (plugins services & mocks, utils services...) (http://forum.ionicframework.com/t/unit-tests-for-ionic/3711/5)
 - add standard usefull plugins :
