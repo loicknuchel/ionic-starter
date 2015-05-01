@@ -6,6 +6,8 @@ Just clone it and you are ready to do ! Many boilerplate code is already written
 
 Feel free to open an issue for any question or suggestion you could have.
 
+This application (mostly) follows the [John Papa's style guide](https://github.com/johnpapa/angular-styleguide).
+
 ## Getting started
 
 - install nodejs, gulp, cordova & ionic (if not already done)

@@ -262,7 +262,7 @@ ionic.Platform.ready(function(){
       // mediaError: (Optional) The callback that executes if an error occurs. (Function)
       // mediaStatus: (Optional) The callback that executes to indicate status changes. (Function)
 
-      if (typeof Audio !== 'function' && typeof Audio !== 'object') {
+      if (typeof Audio !== 'function' && typeof Audio !== 'object'){
         console.warn('HTML5 Audio is not supported in this browser');
       }
       var sound = new Audio();

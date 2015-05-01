@@ -5,28 +5,28 @@
     </div>
     <h1 class="title">Timeline</h1>
     <div class="buttons">
-      <button class="button button-icon ion-close-circled" ng-click="userList.fn.hideAll()" ng-show="userList.state.showDelete || userList.state.showReorder"></button>
-      <button class="button button-icon ion-more" ng-click="fn.showOptions($event)"></button>
+      <button class="button button-icon ion-close-circled" ng-click="vm.listHideAll()" ng-show="vm.isListShowDelete || vm.isListShowReorder"></button>
+      <button class="button button-icon ion-more" ng-click="vm.showOptions($event)"></button>
     </div>
   </ion-header-bar>
 
   <ion-content>
-    <ion-refresher pulling-text="Pull to refresh..." on-refresh="fn.refresh()"></ion-refresher>
-    <ion-list show-delete="userList.state.showDelete" show-reorder="userList.state.showReorder">
-      <ion-item class="item-avatar" ng-repeat="twitt in data.twitts" item="twitt" ui-sref="app.tabs.twitt({twittId: twitt.id})" on-hold="fn.moreOptions(twitt)">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.refresh()"></ion-refresher>
+    <ion-list show-delete="vm.isListShowDelete" show-reorder="vm.isListShowReorder">
+      <ion-item class="item-avatar" ng-repeat="twitt in vm.twitts" item="twitt" ui-sref="app.tabs.twitt({twittId: twitt.id})" on-hold="vm.moreOptions(twitt)">
         <img ng-src="{{twitt.avatar}}">
         <h2>{{twitt.user}}</h2>
         <p>{{twitt.content}}</p>
-        <ion-delete-button class="ion-minus-circled" ng-click="userList.fn.delete(data.twitts, twitt)"></ion-delete-button>
-        <ion-option-button class="button-assertive" ng-click="fn.edit(twitt)">Edit</ion-option-button>
-        <ion-option-button class="button-calm" ng-click="fn.share(twitt)">Share</ion-option-button>
-        <ion-reorder-button class="ion-navicon" on-reorder="userList.fn.reorder(data.twitts, twitt, $fromIndex, $toIndex)"></ion-reorder-button>
+        <ion-delete-button class="ion-minus-circled" ng-click="vm.listDelete(vm.twitts, twitt)"></ion-delete-button>
+        <ion-option-button class="button-assertive" ng-click="vm.edit(twitt)">Edit</ion-option-button>
+        <ion-option-button class="button-calm" ng-click="vm.share(twitt)">Share</ion-option-button>
+        <ion-reorder-button class="ion-navicon" on-reorder="vm.listReorder(vm.twitts, twitt, $fromIndex, $toIndex)"></ion-reorder-button>
       </ion-item>
     </ion-list>
-    <loading ng-show="!data.twitts" top="100px"></loading>
+    <loading ng-show="!vm.twitts" top="100px"></loading>
   </ion-content>
 
-  <ion-footer-bar class="item-input-inset" ng-click="fn.writeTwitt()">
+  <ion-footer-bar class="item-input-inset" ng-click="vm.writeTwitt()">
     <label class="item-input-wrapper">
       <i class="icon ion-chatbubbles placeholder-icon"></i>
       <input type="text" placeholder="Say something">
