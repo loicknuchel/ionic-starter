@@ -1,6 +1,7 @@
 angular.module('app')
 
 // Storage helpuer using localForage (asynchronous best avaiable browser storage) and cache
+// TODO : add promise cache to get data only once even if it's requested many times...
 .factory('StorageUtils', function($localForage, $q, $log, Utils, Config){
   'use strict';
   var storageCache = {};

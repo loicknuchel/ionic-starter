@@ -10,6 +10,8 @@ angular.module('app')
     endsWith: endsWith,       // (str, suffix)                  check if str ends with suffix
     randInt: randInt,         // (min, max)                     generate a random Int between min & max
     toDate: toDate,           // (date)                         format input (timestamp, iso string, JS Date, moment Date) to a JS Date
+    isDate: isDate,           // (date)                         check if date is a Date, get timestamp, iso string, JS Date or moment Date
+    getDeep: getDeep,         // (obj, path)                    allow to get deep value in object
     async: async,             // (fn)                           transform synchronous function in asynchronous function
     debounce: debounce,       // (key, callback, _debounceTime) debounce a value based on given key
     trustHtml: trustHtml,     // (html)                         angular trust html (to display unsafe html)
@@ -51,6 +53,11 @@ angular.module('app')
     if(date && typeof date.toDate === 'function' && date.toDate() instanceof Date){ return date.toDate(); } // moment Date
   }
 
+  function isDate(date){
+    var d = toDate(date);
+    return d instanceof Date && d.toString() !== 'Invalid Date';
+  }
+
   function async(fn){
     var defer = $q.defer();
     $timeout(function(){
@@ -71,6 +78,7 @@ angular.module('app')
     }, _debounceTime || 1000);
   }
 
+  // like angular.merge() (but for previous angular versions)
   function extendDeep(dest){
     angular.forEach(arguments, function(arg){
       if(arg !== dest){
@@ -142,6 +150,10 @@ angular.module('app')
       var bBool = _getDeep(b, params.order.split('.'), 0);
       return (aBool === bBool ? 0 : (aBool ? -1 : 1)) * (params.desc ? -1 : 1);
     });
+  }
+
+  function getDeep(obj, path, _defaultValue){
+    return _getDeep(obj, path.split('.'), _defaultValue);
   }
 
   function _getDeep(obj, attrs, _defaultValue){

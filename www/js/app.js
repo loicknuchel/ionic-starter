@@ -99,6 +99,7 @@ angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
   // registrationId should be uploaded to the server, it is required to send push notification
   PushPlugin.register(Config.gcm.senderID).then(function(registrationId){
     return UserSrv.get().then(function(user){
+      if(!user){ user = {}; }
       user.pushId = registrationId;
       return UserSrv.set(user);
     });

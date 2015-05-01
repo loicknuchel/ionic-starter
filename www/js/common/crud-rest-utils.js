@@ -15,7 +15,7 @@ angular.module('app')
    *  - POST    /endpoint       : create new value with a random id an return the created id in the property 'data' of the response
    *  - PUT     /endpoint/:id   : update the value with the specified id
    *  - DELETE  /endpoint/:id   : delete the value with the specified id and return only the status code
-   * 
+   *
    * Params starting with '_' are optionnals
    * @param endpointUrl: String                     REST API url (like http://localhost:9000/api/v1/todos)
    * @param _objectKey: String (default: 'id')      elt attribute used as id (access to http://localhost:9000/api/v1/todos/myid as elt url !)
@@ -26,12 +26,12 @@ angular.module('app')
    */
   function createCrud(endpointUrl, _objectKey, _getData, _processBreforeSave, _useCache, _httpConfig){
     var objectKey = _objectKey ? _objectKey : 'id';
-    var cache = _useCache === false ? null : $cacheFactory(endpointUrl);
+    var cache = _useCache === false ? null : $cacheFactory.get(endpointUrl) || $cacheFactory(endpointUrl);
     var CrudSrv = {
       eltKey:   objectKey,
       getUrl:   function(_id)           { return _crudGetUrl(endpointUrl, _id);                                                             },
       getAll:   function(_noCache)      { return _crudGetAll(endpointUrl, objectKey, cache, _noCache, _getData, _httpConfig);               },
-      find:     function(where, order)  { return _crudFind(where, order, endpointUrl, objectKey, cache, _getData, _httpConfig);             },
+      find:     function(where, params) { return _crudFind(where, params, endpointUrl, objectKey, cache, _getData, _httpConfig);            },
       findOne:  function(where)         { return _crudFindOne(where, endpointUrl, objectKey, cache, _getData, _httpConfig);                 },
       get:      function(id, _noCache)  { return _crudGet(id, endpointUrl, objectKey, cache, _noCache, _getData, _httpConfig);              },
       save:     function(elt)           { return _crudSave(elt, endpointUrl, objectKey, cache, _processBreforeSave, _getData, _httpConfig); },
@@ -42,7 +42,7 @@ angular.module('app')
 
   /*
    * Create data and functions to use in crud controller, based on a CrudSrv
-   * 
+   *
    * Params starting with '_' are optionnals
    * @param CrudSrv                       data service to connect with
    * @param _defaultSort: {order, desc}   how to sort elts by default
@@ -116,9 +116,9 @@ angular.module('app')
     });
   }
 
-  function _crudFind(where, order, endpointUrl, objectKey, _cache, _getData, _httpConfig){
+  function _crudFind(where, params, endpointUrl, objectKey, _cache, _getData, _httpConfig){
     var url = _crudGetUrl(endpointUrl);
-    return $http.get(url+'?where='+JSON.stringify(where)+(order ? '&order='+order : ''), _crudConfig(null, _httpConfig)).then(function(result){
+    return $http.get(url+'?where='+JSON.stringify(where)+(params ? params : ''), _crudConfig(null, _httpConfig)).then(function(result){
       var elts = typeof _getData === 'function' ? _getData(result) : result.data;
       if(Array.isArray(elts)){
         if(_cache){ // add all individual elements to cache !
@@ -164,6 +164,7 @@ angular.module('app')
         var data = typeof _getData === 'function' ? _getData(result) : result.data;
         var newElt = angular.copy(elt);
         if(!newElt[objectKey] && data[objectKey]){ newElt[objectKey] = data[objectKey]; }
+        if(!newElt['createdAt'] && data['createdAt']){ newElt['createdAt'] = data['createdAt']; } // for Parse responses...
         _setInCache(_cache, endpointUrl, objectKey, result, newElt);
         _invalideAllCache(_cache, endpointUrl);
         return newElt;
