@@ -51,6 +51,7 @@ As it's only a template project, you may want to change its name. For that, you 
 - `www/index.html` (title)
 - `bower.json` (name, homepage, author & description)
 - `package.json` (name & description)
+- `ionic.project` (name)
 
 ## Used versions
 
@@ -70,10 +71,10 @@ As it's only a template project, you may want to change its name. For that, you 
 - add standard usefull plugins :
     - http://mcgivery.com/using-custom-url-schemes-ionic-framework-app/
     - sqlite db (https://blog.nraboy.com/2015/01/deploy-ionic-framework-app-pre-filled-sqlite-db/)
+    - org.apache.cordova.statusbar ([ngCordova](http://ngcordova.com/docs/plugins/statusbar/))
+    - de.appplant.cordova.plugin.local-notification ([ngCordova](http://ngcordova.com/docs/plugins/localNotification/))
     - webintent
     - org.apache.cordova.splashscreen ([ngCordova](http://ngcordova.com/docs/plugins/splashscreen/))
-    - de.appplant.cordova.plugin.local-notification ([ngCordova](http://ngcordova.com/docs/plugins/localNotification/))
-    - org.apache.cordova.statusbar ([ngCordova](http://ngcordova.com/docs/plugins/statusbar/))
     - https://github.com/pushandplay/cordova-plugin-apprate ([ngCordova](http://ngcordova.com/docs/plugins/appRate/))
     - https://github.com/whiteoctober/cordova-plugin-app-version ([ngCordova](http://ngcordova.com/docs/plugins/appVersion/))
 

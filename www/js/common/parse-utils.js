@@ -19,7 +19,7 @@ angular.module('app')
       signup: signup,                   // (user)                                           signup new user in parse. User MUST contain username & password fields !
       login: login,                     // (username, password)                             login existing user
       passwordRecover: passwordRecover, // (email)                                          send user password reset
-      geoPoint: geoPoint,               // (lat, lon)                                       create a Parse GeoPoint
+      toGeoPoint: toGeoPoint,           // (lat, lon)                                       create a Parse GeoPoint
       toPointer: toPointer,             // (className, objectId)                            create a Parse Pointer
       toDate: toDate                    // (date)                                           format date for Parse
     };
@@ -88,7 +88,7 @@ angular.module('app')
       });
     }
 
-    function geoPoint(lat, lon){
+    function toGeoPoint(lat, lon){
       return {
         __type: 'GeoPoint',
         latitude: lat,
