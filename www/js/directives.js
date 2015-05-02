@@ -4,8 +4,7 @@
     .directive('href', href)
     .directive('debounce', debounce)
     .directive('blurOnKeyboardOut', blurOnKeyboardOut)
-    .directive('focusOnKeyboardOpen', focusOnKeyboardOpen)
-    .directive('loading', loading);
+    .directive('focusOnKeyboardOpen', focusOnKeyboardOpen);
 
   // open external links (starting with http:// or https://) outside the app
   function href($window){
@@ -101,27 +100,6 @@
             element[0].focus();
           }
         }, true);
-      }
-    };
-  }
-
-  // from http://tobiasahlin.com/spinkit/
-  function loading(){
-    return {
-      restrict: 'E',
-      scope: {
-        color: '@',
-        top: '@'
-      },
-      template: '<div class="spinner" ng-style="spinnerStyle">'+
-      '<div class="double-bounce1" ng-style="dotStyle"></div>'+
-      '<div class="double-bounce2" ng-style="dotStyle"></div>'+
-      '</div>',
-      link: function(scope, element, attrs){
-        scope.dotStyle = {};
-        if(scope.color){ scope.dotStyle['background-color'] = scope.color; }
-        scope.spinnerStyle = {};
-        if(scope.top){ scope.spinnerStyle['margin-top'] = scope.top; }
       }
     };
   }

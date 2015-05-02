@@ -1,0 +1,1 @@
+This folder is responsible of app structure code. In this case, it's the sidemenu and the tabs.

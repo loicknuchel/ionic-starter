@@ -1,0 +1,10 @@
+[
+  {"id": "1", "user": "Venkman",  "avatar": "http://ionicframework.com/img/docs/venkman.jpg",                                         "content": "Back off, man. I'm a scientist."  },
+  {"id": "2", "user": "Egon",     "avatar": "http://ionicframework.com/img/docs/spengler.jpg",                                        "content": "We're gonna go full stream."      },
+  {"id": "3", "user": "Ray",      "avatar": "http://ionicframework.com/img/docs/stantz.jpg",                                          "content": "Ugly little spud, isn't he?"      },
+  {"id": "4", "user": "Winston",  "avatar": "http://ionicframework.com/img/docs/winston.jpg",                                         "content": "That's a big Twinkie."            },
+  {"id": "5", "user": "Tully",    "avatar": "http://ionicframework.com/img/docs/tully.jpg",                                           "content": "Okay, who brought the dog?"       },
+  {"id": "6", "user": "Dana",     "avatar": "http://ionicframework.com/img/docs/barrett.jpg",                                         "content": "I am The Gatekeeper!"             },
+  {"id": "7", "user": "Slimer",   "avatar": "http://ionicframework.com/img/docs/slimer.jpg",                                          "content": "Boo!"                             },
+  {"id": "8", "user": "Loïc",     "avatar": "https://pbs.twimg.com/profile_images/3133057797/81ea4e63c7078eec0a7c7d6ae57a3ce1.jpeg",  "content": "Really nice, isn't it ?"          }
+]

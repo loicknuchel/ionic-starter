@@ -7,7 +7,7 @@
   </ion-header-bar>
 
   <ion-content>
-    <loading ng-show="!vm.twitt" top="100px"></loading>
+    <ion-spinner class="hcenter voffset" ng-show="!vm.twitt"></ion-spinner>
     <div class="list card" ng-show="vm.twitt">
       <div class="item item-avatar">
         <img ng-src="{{vm.twitt.avatar}}">

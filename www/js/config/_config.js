@@ -8,7 +8,7 @@ var Config = (function(){
     storage: true, // should save data to browser storage
     storagePrefix: 'app-', // prefix all stoarge entries with this prefix
     emailSupport: 'exemple@mail.com',
-    backendUrl: 'http://myserver.com/api/v1',
+    backendUrl: 'data', // 'http://myserver.com/api/v1',
     parse: {
       applicationId: '',
       restApiKey: ''

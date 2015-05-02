@@ -23,7 +23,7 @@
         <ion-reorder-button class="ion-navicon" on-reorder="vm.listReorder(vm.twitts, twitt, $fromIndex, $toIndex)"></ion-reorder-button>
       </ion-item>
     </ion-list>
-    <loading ng-show="!vm.twitts" top="100px"></loading>
+    <ion-spinner class="hcenter voffset" ng-show="!vm.twitts"></ion-spinner>
   </ion-content>
 
   <ion-footer-bar class="item-input-inset" ng-click="vm.writeTwitt()">

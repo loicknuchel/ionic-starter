@@ -1,72 +1,14 @@
 (function(){
   'use strict';
   angular.module('app', ['ionic', 'ngCordova', 'LocalForageModule'])
-    .config(config)
+    .config(configure)
     .constant('Config', Config)
-    .run(run);
+    .run(runBlock);
 
-  function config($stateProvider, $urlRouterProvider, $provide, $httpProvider, AuthSrvProvider){
+  function configure($urlRouterProvider, $provide, $httpProvider, AuthSrvProvider){
     // ParseUtilsProvider.initialize(Config.parse.applicationId, Config.parse.restApiKey);
 
-    $stateProvider
-      .state('login', {
-      url: '/login',
-      templateUrl: 'views/login.html',
-      controller: 'LoginCtrl'
-    })
-      .state('app', {
-      url: '/app',
-      abstract: true,
-      templateUrl: 'views/menu.html',
-      controller: 'AppCtrl'
-    })
-      .state('app.tabs', {
-      url: '/tabs',
-      abstract: true,
-      views: {
-        'menuContent': {
-          templateUrl: 'views/tabs.html',
-          controller: 'TabsCtrl'
-        }
-      }
-    })
-      .state('app.tabs.twitts', {
-      url: '/twitts',
-      views: {
-        'twitts-tab': {
-          templateUrl: 'views/twitts.html',
-          controller: 'TwittsCtrl'
-        }
-      }
-    })
-      .state('app.tabs.twitt', {
-      url: '/twitt/:twittId',
-      views: {
-        'twitts-tab': {
-          templateUrl: 'views/twitt.html',
-          controller: 'TwittCtrl'
-        }
-      }
-    })
-      .state('app.tabs.chat', {
-      url: '/chat',
-      views: {
-        'chat-tab': {
-          templateUrl: 'views/chat.html',
-          controller: 'ChatCtrl'
-        }
-      }
-    })
-      .state('app.tabs.notifs', {
-      url: '/notifs',
-      views: {
-        'notifs-tab': {
-          templateUrl: 'views/notifs.html',
-          controller: 'NotifsCtrl'
-        }
-      }
-    });
-
+    // TODO : add loading state which redirect on required view
     if(AuthSrvProvider.isLogged()){
       $urlRouterProvider.otherwise('/app/tabs/twitts');
     } else {
@@ -82,7 +24,7 @@
     $httpProvider.interceptors.push('AuthInterceptor');
   }
 
-  function run($rootScope, $state, $log, AuthSrv, UserSrv, PushPlugin, ToastPlugin, Config){
+  function runBlock($rootScope, $state, $log, AuthSrv, UserSrv, PushPlugin, ToastPlugin, Config){
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
       var logged = AuthSrv.isLogged();
       if(toState.name === 'login' && logged){
