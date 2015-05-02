@@ -9,35 +9,35 @@
     .filter('mynumber', mynumber)
     .filter('rating', rating);
 
-  function date(Utils){
+  function date(Utils, moment){
     return function(date, format){
       var jsDate = Utils.toDate(date);
       return jsDate ? moment(jsDate).format(format ? format : 'll') : '<date>';
     };
   }
 
-  function datetime(Utils){
+  function datetime(Utils, moment){
     return function(date, format){
       var jsDate = Utils.toDate(date);
       return jsDate ? moment(jsDate).format(format ? format : 'D MMM YYYY, HH:mm:ss') : '<datetime>';
     };
   }
 
-  function time(Utils){
+  function time(Utils, moment){
     return function(date, format){
       var jsDate = Utils.toDate(date);
       return jsDate ? moment(jsDate).format(format ? format : 'LT') : '<time>';
     };
   }
 
-  function humanTime(Utils){
+  function humanTime(Utils, moment){
     return function(date){
       var jsDate = Utils.toDate(date);
       return jsDate ? moment(jsDate).fromNow(true) : '<humanTime>';
     };
   }
 
-  function duration($log){
+  function duration($log, moment){
     return function(seconds, humanize){
       if(seconds || seconds === 0){
         if(humanize){

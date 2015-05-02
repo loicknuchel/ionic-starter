@@ -3,7 +3,7 @@
   angular.module('app')
     .factory('CollectionUtils', CollectionUtils);
 
-  function CollectionUtils(){
+  function CollectionUtils(_){
     var service = {
       clear: clear,             // (col)                            empty collection without loosing reference
       copy: copy,               // (srcCol, destCol)                copy srcCol to destCol without loosing reference

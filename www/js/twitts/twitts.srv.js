@@ -4,8 +4,8 @@
     .factory('TwittSrv', TwittSrv);
 
   // This is a dummy service to use in demo...
-  TwittSrv.$inject = ['$http', '$q', '$timeout', 'Utils', 'Config'];
-  function TwittSrv($http, $q, $timeout, Utils, Config){
+  TwittSrv.$inject = ['$http', '$q', '$timeout', 'Utils', 'Config', '_'];
+  function TwittSrv($http, $q, $timeout, Utils, Config, _){
     var cachedTwitts = undefined;
     var service = {
       getAll: getAll,
