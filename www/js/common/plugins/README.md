@@ -1,0 +1,1 @@
+Here are all avaiables plugins. Services *Plugin avec angular wrapper to cordova plugins (similar to ngCordova). Including a plugin will also add a plugin mock for in-browser use.

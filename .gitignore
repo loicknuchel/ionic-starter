@@ -2,14 +2,14 @@
 # http://git-scm.com/docs/gitignore
 
 node_modules/
-platforms/
-plugins/
+/platforms/
+/plugins/
 
 # when use sass, do not commit css files
-www/css/
-www/lib/
+/www/css/
+/www/lib/
 
 # do not commit generated images
-resources/android
+/resources/android
 
 *~
