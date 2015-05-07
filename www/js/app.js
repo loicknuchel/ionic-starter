@@ -8,12 +8,7 @@
   function configure($urlRouterProvider, $provide, $httpProvider, AuthSrvProvider){
     // ParseUtilsProvider.initialize(Config.parse.applicationId, Config.parse.restApiKey);
 
-    // TODO : add loading state which redirect on required view
-    if(AuthSrvProvider.isLogged()){
-      $urlRouterProvider.otherwise('/app/tabs/twitts');
-    } else {
-      $urlRouterProvider.otherwise('/login');
-    }
+    $urlRouterProvider.otherwise('/loading');
 
     // improve angular logger
     $provide.decorator('$log', ['$delegate', 'customLogger', function($delegate, customLogger){

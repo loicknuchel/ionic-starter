@@ -5,6 +5,11 @@
 
   function configure($stateProvider){
     $stateProvider
+      .state('loading', {
+      url: '/loading',
+      templateUrl: 'js/layout/loading.html',
+      controller: 'LoadingCtrl'
+    })
       .state('app', {
       url: '/app',
       abstract: true,

@@ -36,7 +36,7 @@
   ionic.Platform.ready(function(){
     if(!ionic.Platform.isWebView()){
       if(!window.device){
-        var browser = {available: true, cordova: "",      manufacturer: "",     model: "",        platform: "browser", uuid: "",                  version: "0"    };
+        var browser = {available: true, cordova: "",      manufacturer: "",     model: "",        platform: "browser", uuid: "0123456789",        version: "0"    };
         var android = {available: true, cordova: "3.6.4", manufacturer: "LGE",  model: "Nexus 4", platform: "Android", uuid: "891b8e516ae6bd65",  version: "5.0.1"};
         window.device = browser;
       }
