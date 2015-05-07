@@ -4,8 +4,8 @@
     .config(configure)
     .run(runBlock);
 
-  configure.$inject = ['$urlRouterProvider', '$provide', '$httpProvider', 'AuthSrvProvider'];
-  function configure($urlRouterProvider, $provide, $httpProvider, AuthSrvProvider){
+  configure.$inject = ['$urlRouterProvider', '$provide', '$httpProvider'];
+  function configure($urlRouterProvider, $provide, $httpProvider){
     // ParseUtilsProvider.initialize(Config.parse.applicationId, Config.parse.restApiKey);
 
     $urlRouterProvider.otherwise('/loading');
@@ -27,15 +27,18 @@
 
     function checkRouteRights(){
       $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-        var logged = AuthSrv.isLogged();
-        if(toState.name === 'login' && logged){
-          event.preventDefault();
-          $log.log('IllegalAccess', 'Already logged in !');
-          $state.go('app.tabs.twitts');
-        } else if(toState.name !== 'login' && !logged){
-          event.preventDefault();
-          $log.log('IllegalAccess', 'Not allowed to access to <'+toState.name+'> state !');
-          $state.go('login');
+        if(toState && toState.data && Array.isArray(toState.data.restrictAccess)){
+          var restricted = toState.data.restrictAccess;
+          var logged = AuthSrv.isLogged();
+          if(logged && restricted.indexOf('notLogged') > -1){
+            event.preventDefault();
+            $log.log('IllegalAccess', 'State <'+toState.name+'> is restricted to non logged users !');
+            $state.go('loading');
+          } else if(!logged && restricted.indexOf('logged') > -1){
+            event.preventDefault();
+            $log.log('IllegalAccess', 'State <'+toState.name+'> is restricted to logged users !');
+            $state.go('loading');
+          }
         }
       });
     }

@@ -1,29 +1,24 @@
 (function(){
   'use strict';
   angular.module('app')
-    .controller('LoadingCtrl', MenuCtrl);
+    .controller('LoadingCtrl', LoadingCtrl);
 
-  function MenuCtrl($scope, $q, $timeout, $state, AuthSrv){
+  function LoadingCtrl($scope, $q, $timeout, $state, AuthSrv){
     var vm = {};
     $scope.vm = vm;
-    
-    checkWhatYouWant().then(function(res){
-      if(res.logged){
-        $state.go('app.tabs.twitts');
-      } else {
-        $state.go('login');
-      }
+
+    $scope.$on('$ionicView.enter', function(viewInfo){
+      redirect();
     });
-    
-    function checkWhatYouWant(){
-      // you can check things on your server, get geolocation, preload data...
-      var q = $q.defer();
+
+    function redirect(){
       $timeout(function(){
-        q.resolve({
-          logged: AuthSrv.isLogged()
-        });
+        if(AuthSrv.isLogged()){
+          $state.go('app.tabs.twitts');
+        } else {
+          $state.go('login');
+        }
       }, 300);
-      return q.promise;
     }
   }
 })();

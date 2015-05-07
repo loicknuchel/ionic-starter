@@ -88,7 +88,8 @@
     }
     function sendTwitt(form){
       form.saving = true;
-      TwittSrv.save(form).then(function(){
+      TwittSrv.save(form).then(function(newTwitt){
+        if(vm.twitts){ vm.twitts.unshift(newTwitt); }
         ui.sendTwittModal.hide();
         form.content = '';
         form.saving = false;

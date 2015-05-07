@@ -2,7 +2,7 @@
   'use strict';
   angular.module('app')
     .factory('StorageUtils', StorageUtils)
-    .provider('LocalStorageUtils', LocalStorageUtils);
+    .provider('LocalStorageUtils', LocalStorageProvider);
 
   // Storage helpuer using localForage (asynchronous best avaiable browser storage) and cache
   // TODO : add promise cache to get data only once even if it's requested many times...
@@ -114,8 +114,10 @@
   }
 
   // LocalStorage helper with caching system & asynchronous calls
-  function LocalStorageUtils(Config){
+  function LocalStorageProvider(Config){
     var storageCache = {};
+    this.getSync = _get;
+    this.$get = LocalStorageUtils;
 
     function _get(key, _defaultValue){
       if(!storageCache[key]){
@@ -135,9 +137,8 @@
       }
     }
 
-    this.getSync = _get;
-
-    this.$get = ['$window', '$log', 'Utils', function($window, $log, Utils){
+    LocalStorageUtils.$inject = ['$window', '$log', 'Utils'];
+    function LocalStorageUtils($window, $log, Utils){
       var service = {
         get:                function(key, _defaultValue)  { return Utils.async(function(){return _get(key, _defaultValue);});         },
         set:                function(key, value)          { return Utils.async(function(){return _set(key, value);});                 },
@@ -194,6 +195,6 @@
       }
 
       return service;
-    }];
+    }
   }
 })();

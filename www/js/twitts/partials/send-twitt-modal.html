@@ -15,10 +15,10 @@
     </div>
     <div class="row">
       <div class="col">
-        <button class="button button-block" ng-click="fn.cancelSendTwitt()">Cancel</button>
+        <button class="button button-block" ng-click="vm.cancelSendTwitt()">Cancel</button>
       </div>
       <div class="col">
-        <button class="button button-block button-positive" ng-click="fn.sendTwitt(form)" ng-disabled="!form.user || !form.content || form.saving">
+        <button class="button button-block button-positive" ng-click="vm.sendTwitt(form)" ng-disabled="!form.user || !form.content || form.saving">
           <i class="icon ion-paper-airplane" ng-show="!form.saving"></i>
           <i class="icon ion-load-a fa-spin" ng-show="form.saving"></i>
           Send

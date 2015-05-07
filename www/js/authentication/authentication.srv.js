@@ -1,43 +1,43 @@
 (function(){
   'use strict';
   angular.module('app')
-    .provider('AuthSrv', AuthProvider)
+    .factory('AuthSrv', AuthSrv)
     .factory('AuthInterceptor', AuthInterceptor);
 
-  AuthProvider.$inject = ['UserSrvProvider', 'LocalStorageUtilsProvider'];
-  function AuthProvider(UserSrvProvider, LocalStorageUtilsProvider){
-    this.isLogged = isLogged;
-    this.$get = AuthSrv;
+  AuthSrv.$inject = ['$http', 'UserSrv', 'LocalStorageUtils', 'Config'];
+  function AuthSrv($http, UserSrv, LocalStorageUtils, Config){
+    var service = {
+      login: login,
+      logout: logout,
+      isLogged: isLogged
+    };
+    return service;
 
-    function isLogged(){
-      return LocalStorageUtilsProvider.getSync(UserSrvProvider.storageKey) !== undefined;
+    function login(credentials){
+      return $http.get(Config.backendUrl+'/login', {
+        login: credentials.login,
+        password: credentials.password
+      }).then(function(res){
+        var user = res.data;
+        user.logged = true;
+        return UserSrv.set(user).then(function(){
+          return user;
+        });
+      });
     }
 
-    AuthSrv.$inject = ['$http', 'UserSrv', 'LocalStorageUtils', 'Config'];
-    function AuthSrv($http, UserSrv, LocalStorageUtils, Config){
-      var service = {
-        login: login,
-        logout: logout,
-        isLogged: isLogged
-      };
-      return service;
-
-      function login(credentials){
-        return $http.get(Config.backendUrl+'/login', {
-          login: credentials.login,
-          password: credentials.password
-        }).then(function(res){
-          return UserSrv.set(res.data).then(function(){
-            return res.data;
-          });
+    function logout(){
+      return $http.get(Config.backendUrl+'/logout').then(function(){
+        return UserSrv.get().then(function(user){
+          user.logged = false;
+          return UserSrv.set(user);
         });
-      }
+      });
+    }
 
-      function logout(){
-        return $http.get(Config.backendUrl+'/logout').then(function(){
-          return UserSrv.delete();
-        });
-      }
+    function isLogged(){
+      var user = LocalStorageUtils.getSync(UserSrv.storageKey);
+      return user && user.logged === true;
     }
   }
 

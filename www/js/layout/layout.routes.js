@@ -14,7 +14,10 @@
       url: '/app',
       abstract: true,
       templateUrl: 'js/layout/menu.html',
-      controller: 'MenuCtrl'
+      controller: 'MenuCtrl',
+      data: {
+        restrictAccess: ['logged'] // this property will be herited to child views
+      }
     })
       .state('app.tabs', {
       url: '/tabs',

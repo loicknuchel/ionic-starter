@@ -8,7 +8,10 @@
       .state('login', {
       url: '/login',
       templateUrl: 'js/authentication/login.html',
-      controller: 'LoginCtrl'
+      controller: 'LoginCtrl',
+      data: {
+        restrictAccess: ['notLogged']
+      }
     });
   }
 })();

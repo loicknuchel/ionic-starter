@@ -40,6 +40,7 @@
         newTwitt.avatar = 'http://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png';
         newTwitt.content = twitt.content;
         cachedTwitts.unshift(newTwitt);
+        return angular.copy(newTwitt);
       });
     }
 
@@ -53,7 +54,7 @@
       var defer = $q.defer();
       $timeout(function(){
         defer.resolve(fn());
-      }, 1000);
+      }, 500);
       return defer.promise;
     }
   }
