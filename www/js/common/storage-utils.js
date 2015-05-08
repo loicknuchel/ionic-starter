@@ -4,10 +4,10 @@
     .factory('StorageUtils', StorageUtils)
     .provider('LocalStorageUtils', LocalStorageProvider);
 
-  // Storage helpuer using localForage (asynchronous best avaiable browser storage) and cache
-  // TODO : add promise cache to get data only once even if it's requested many times...
+  // Storage helper using localForage (asynchronous best avaiable browser storage) and cache
   function StorageUtils($localForage, $q, $log, Utils, Config){
     var storageCache = {};
+    var promiseStorageCache = {};
     var service = {
       get: _get,
       set: _set,
@@ -18,35 +18,38 @@
     };
 
     function _get(key, _defaultValue){
-      if(!storageCache[key]){
+      if(storageCache[key]){
+        return Utils.async(function(){ return angular.copy(storageCache[key]); });
+      } else if(promiseStorageCache[key]){
+        return promiseStorageCache[key];
+      } else {
         if(Config.storage){
-          return $localForage.getItem(Config.storagePrefix+key).then(function(value){
+          promiseStorageCache[key] = $localForage.getItem(Config.storagePrefix+key).then(function(value){
             try {
               storageCache[key] = JSON.parse(value) || angular.copy(_defaultValue);
             } catch(e) {
               storageCache[key] = angular.copy(_defaultValue);
             }
+            delete promiseStorageCache[key];
             return angular.copy(storageCache[key]);
           }, function(error){
             $log.error('error in LocalForageUtils._get('+key+')', error);
+            delete promiseStorageCache[key];
           });
+          return promiseStorageCache[key];
         } else {
           storageCache[key] = angular.copy(_defaultValue);
-          return $q.when(angular.copy(storageCache[key]));
+          return Utils.async(function(){ return angular.copy(storageCache[key]); });
         }
-      } else {
-        return $q.when(angular.copy(storageCache[key]));
       }
     }
 
-    function _getSync(key, _defaultValue, _callback){
-      if(!storageCache[key]){
-        _get(key, _defaultValue).then(function(value){
-          if(_callback){ _callback(value); }
-        });
-        return angular.copy(_defaultValue);
-      } else {
+    function _getSync(key, _defaultValue){
+      if(storageCache[key]){
         return angular.copy(storageCache[key]);
+      } else {
+        _get(key, _defaultValue);
+        return angular.copy(_defaultValue);
       }
     }
 
@@ -127,14 +130,11 @@
           } catch(e) {
             storageCache[key] = angular.copy(_defaultValue);
           }
-          return angular.copy(storageCache[key]);
         } else {
           storageCache[key] = angular.copy(_defaultValue);
-          return angular.copy(storageCache[key]);
         }
-      } else {
-        return angular.copy(storageCache[key]);
       }
+      return angular.copy(storageCache[key]);
     }
 
     LocalStorageUtils.$inject = ['$window', '$log', 'Utils'];
