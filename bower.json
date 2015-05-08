@@ -1,10 +1,10 @@
 {
   "name": "ionic-starter",
-  "private": "true",
+  "description": "Start a new ionic project in seconds !",
   "version": "0.0.1",
   "homepage": "https://github.com/loicknuchel/ionic-starter",
   "authors": [ "Loïc Knuchel <loicknuchel@gmail.com>" ],
-  "description": "Start a new ionic project in seconds !",
+  "private": "true",
   "main": "www/index.html",
   "keywords": [
     "html5",

@@ -10,15 +10,15 @@ This application (mostly) follows the [John Papa's style guide](https://github.c
 
 ## Getting started
 
-- install nodejs, gulp, cordova & ionic (if not already done)
+- install nodejs, npm, gulp, bower, cordova, ionic & sass (if not already done)
 - `git clone git@github.com:loicknuchel/ionic-starter.git` : clone this repo
 - `cd ionic-starter` : go to folder
 - `bower install` : install app dependencies
-- `npm install gulp` : install build dependencies
+- `npm install` : install build dependencies
 - `ionic setup sass` : use sass
 - `ionic serve` : start the app on your browser
 
-For the impatients, you can run all these commands in one time : `git clone git@github.com:loicknuchel/ionic-starter.git && cd ionic-starter && bower install && npm install gulp && ionic setup sass && ionic serve`
+For the impatients, you can run all these commands in one time : `git clone git@github.com:loicknuchel/ionic-starter.git && cd ionic-starter && bower install && npm install && ionic setup sass && ionic serve`
 
 To run the app on your android device :
 
@@ -60,8 +60,8 @@ As it's only a template project, you may want to change its name. For that, you 
 - Node v0.10.26 (`node -v`)
 - Cordova 4.2.0 (`cordova -version`)
 - Bower 1.3.12 (`bower -v`)
-- Angular 1.3.6 (see bower.json)
-- Ionic 1.0.0-beta.14 (see bower.json)
+- Angular 1.3.13 (see bower.json)
+- Ionic 1.0.0-rc.5 (see bower.json)
 
 ## TODO
 
