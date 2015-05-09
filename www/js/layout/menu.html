@@ -1,5 +1,13 @@
 <ion-side-menus enable-menu-with-back-views="true">
   <ion-side-menu-content>
+    <ion-nav-bar class="bar-calm">
+      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <div class="buttons">
+          <button class="button button-icon ion-navicon" menu-toggle="left" ng-hide="$exposeAside.active"></button>
+        </div>
+      </ion-nav-buttons>
+    </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
@@ -12,7 +20,7 @@
         <a class="item item-icon-left" ui-sref="app.tabs.twitts" nav-clear menu-close>
           <i class="icon ion-social-twitter-outline"></i> Twitts
         </a>
-        <span class="item item-icon-left" ng-click="vm.logout()" menu-close>
+        <a class="item item-icon-left" ng-click="vm.logout()" menu-close>
           <i class="icon ion-log-out"></i> Logout
         </a>
       </div>

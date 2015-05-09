@@ -1,5 +1,5 @@
 <ion-view>
-  <ion-header-bar class="bar-positive">
+  <ion-header-bar class="bar-calm">
     <div class="title">Login</div>
   </ion-header-bar>
   <ion-content>
@@ -15,7 +15,7 @@
         </label>
       </div>
       <div class="padding">
-        <button type="submit" class="button button-block button-positive" ng-disabled="!vm.credentials.login || !vm.credentials.password || vm.loading === true">Login</button>
+        <button type="submit" class="button button-block button-calm" ng-disabled="!vm.credentials.login || !vm.credentials.password || vm.loading === true">Login</button>
         <div class="card padding" ng-if="vm.error !== null">Error: {{vm.error}}</div>
       </div>
     </form>
