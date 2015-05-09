@@ -4,8 +4,8 @@
     .factory('AuthSrv', AuthSrv)
     .factory('AuthInterceptor', AuthInterceptor);
 
-  AuthSrv.$inject = ['$http', 'UserSrv', 'LocalStorageUtils', 'Config'];
-  function AuthSrv($http, UserSrv, LocalStorageUtils, Config){
+  AuthSrv.$inject = ['$http', 'UserSrv', 'StorageUtils', 'Config'];
+  function AuthSrv($http, UserSrv, StorageUtils, Config){
     var service = {
       login: login,
       logout: logout,
@@ -36,7 +36,7 @@
     }
 
     function isLogged(){
-      var user = LocalStorageUtils.getSync(UserSrv.storageKey);
+      var user = StorageUtils.getSync(UserSrv.storageKey);
       return user && user.logged === true;
     }
   }

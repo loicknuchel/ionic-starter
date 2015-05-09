@@ -65,9 +65,11 @@ As it's only a template project, you may want to change its name. For that, you 
 
 ## TODO
 
+
+- Replace all <ion-header-bar> with <ion-nav-bar>
+- Mettre en place des analytices (segment.io, google analytics...)
 - tell Ionic CLI to not add empty cordova.js :(
 - improve _log.js : get device uuid instead of userId...
-- Replace <ion-header-bar> with <ion-nav-bar>
 - Geolocation plugin : check if geolocation is enabled
 - add tests & comments (plugins services & mocks, utils services...) (http://forum.ionicframework.com/t/unit-tests-for-ionic/3711/5)
 - add standard usefull plugins :

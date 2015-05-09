@@ -3,8 +3,8 @@
   angular.module('app')
     .factory('UserSrv', UserSrv);
 
-  UserSrv.$inject = ['LocalStorageUtils'];
-  function UserSrv(LocalStorageUtils){
+  UserSrv.$inject = ['StorageUtils'];
+  function UserSrv(StorageUtils){
     var userKey = 'user';
     var service = {
       storageKey: userKey,
@@ -15,15 +15,15 @@
     return service;
 
     function getCurrentUser(){
-      return LocalStorageUtils.get(userKey);
+      return StorageUtils.get(userKey);
     }
 
     function setCurrentUser(user){
-      return LocalStorageUtils.set(userKey, user);
+      return StorageUtils.set(userKey, user);
     }
 
     function deleteCurrentUser(){
-      return LocalStorageUtils.clear(userKey);
+      return StorageUtils.clear(userKey);
     }
   }
 })();

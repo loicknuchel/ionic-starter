@@ -1,11 +1,13 @@
 (function(){
   'use strict';
   angular.module('app')
-    .factory('StorageUtils', StorageUtils)
+  //.factory('StorageUtils', LocalForageUtils)
+    .provider('StorageUtils', LocalStorageProvider) // this is a proxy to use it every when in the app (and easily change...)
+    .factory('LocalForageUtils', LocalForageUtils)
     .provider('LocalStorageUtils', LocalStorageProvider);
 
   // Storage helper using localForage (asynchronous best avaiable browser storage) and cache
-  function StorageUtils($localForage, $q, $log, Utils, Config){
+  function LocalForageUtils($localForage, $q, $log, Utils, Config){
     var storageCache = {};
     var promiseStorageCache = {};
     var service = {
