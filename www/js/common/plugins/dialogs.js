@@ -126,7 +126,7 @@
       if(!window.navigator){window.navigator = {};}
       if(!window.navigator.notification){
         window.navigator.notification = (function(){
-          var ctx = new(window.audioContext || window.webkitAudioContext);
+          var ctx = new(window.AudioContext || window.webkitAudioContext);
           function html5Beep(callback){
             var duration = 200;
             var type = 0;
