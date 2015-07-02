@@ -8,13 +8,14 @@
     var pluginName = 'LocalNotification';
     var pluginTest = function(){ return $window.plugin && $window.plugin.notification && $window.plugin.notification.local; };
     var service = {
-      add: add,
-      cancel: cancel
+      schedule: schedule,
+      cancel: cancel,
+      onClick: function(callback){ return on('click', callback); }
     };
 
-    function add(opts){
+    function schedule(opts){
       return PluginUtils.onReady(pluginName, pluginTest).then(function(){
-        $window.plugin.notification.local.add(opts);
+        $window.plugin.notification.local.schedule(opts);
       });
     }
 
@@ -28,6 +29,12 @@
       });
     }
 
+    function on(event, callback){
+      return PluginUtils.onReady(pluginName, pluginTest).then(function(){
+        $window.plugin.notification.local.on(event, callback);
+      });
+    }
+
     return service;
   }
 
@@ -38,12 +45,11 @@
    *                        *
    **************************/
   ionic.Platform.ready(function(){
-    if(!ionic.Platform.isWebView()){
-      if(!window.cordova){window.cordova = {};}
-      if(!window.cordova.plugins){window.cordova.plugins = {};}
-      if(!window.cordova.plugins.notification){window.cordova.plugins.notification = {};}
-      if(!window.cordova.plugins.notification.local){
-        window.cordova.plugins.notification.local = (function(){
+    if(!(ionic.Platform.isAndroid() || ionic.Platform.isIOS() || ionic.Platform.isIPad())){
+      if(!window.plugin){window.plugin = {};}
+      if(!window.plugin.notification){window.plugin.notification = {};}
+      if(!window.plugin.notification.local){
+        window.plugin.notification.local = (function(){
           var notifs = {};
           // https://github.com/katzer/cordova-plugin-local-notifications/wiki/04.-Scheduling#interface
           var defaults = {

@@ -62,7 +62,7 @@
    *                        *
    **************************/
   ionic.Platform.ready(function(){
-    if(!ionic.Platform.isWebView()){
+    if(!(ionic.Platform.isAndroid() || ionic.Platform.isIOS() || ionic.Platform.isIPad())){
       if(!window.Media){
         window.Media = function(src, mediaSuccess, mediaError, mediaStatus){
           // src: A URI containing the audio content. (DOMString)

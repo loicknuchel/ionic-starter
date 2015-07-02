@@ -127,7 +127,7 @@
    *                        *
    **************************/
   ionic.Platform.ready(function(){
-    if(!ionic.Platform.isWebView()){
+    if(!(ionic.Platform.isAndroid() || ionic.Platform.isIOS() || ionic.Platform.isIPad())){
       if(!window.plugins){window.plugins = {};}
       if(!window.plugins.pushNotification){
         window.plugins.pushNotification = (function(){

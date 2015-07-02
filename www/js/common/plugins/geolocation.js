@@ -81,7 +81,7 @@
    *                        *
    **************************/
   ionic.Platform.ready(function(){
-    if(!ionic.Platform.isWebView()){
+    if(!(ionic.Platform.isAndroid() || ionic.Platform.isIOS() || ionic.Platform.isIPad())){
       
     }
   });
