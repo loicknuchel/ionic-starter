@@ -1,1 +1,0 @@
-Here are some hand-written libs. They are mostly helpers for really common actions.

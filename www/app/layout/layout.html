@@ -1,0 +1,26 @@
+<ion-side-menus enable-menu-with-back-views="false">
+
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Menu</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+        <a class="item item-icon-left" ui-sref="app.twitts" nav-clear menu-close><i class="icon ion-social-twitter"></i> Twitts</a>
+        <a class="item item-icon-left" ui-sref="app.settings" nav-clear menu-close><i class="icon ion-android-options"></i> Paramètres</a>
+        <a class="item item-icon-left" ng-click="fn.logout()" nav-clear menu-close><i class="icon ion-log-out"></i> Déconnexion</a>
+      </div>
+    </ion-content>
+  </ion-side-menu>
+
+</ion-side-menus>

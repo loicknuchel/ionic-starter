@@ -1,0 +1,19 @@
+<ion-view title="Timeline">
+  <div ng-if="data.twitts.length > 0" class="bar bar-subheader item-input-inset" ng-class="{'bar-positive': search.length > 0}">
+    <label class="item-input-wrapper">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="search" placeholder="Rechercher ..." ng-model="search">
+    </label>
+    <button class="button button-clear" ng-click="search=''">Annuler</button>
+  </div>
+  <ion-content class="has-subheader">
+    <div ng-if="data.twitts.length === 0" class="empty-msg">Aucun twitt :(</div>
+    <div ng-if="data.twitts.length > 0" class="list">
+      <a class="item item-avatar" ng-repeat="twitt in data.filteredTwitts = (data.twitts | filter:search) track by twitt.id" ui-sref="app.twitt({id: twitt.id})">
+        <img ng-src="{{twitt.avatar}}">
+        <h2>{{twitt.user}}</h2>
+        <p>{{twitt.content}}</p>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

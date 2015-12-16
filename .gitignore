@@ -1,7 +1,12 @@
 # Specifies intentionally untracked files to ignore when using Git
 # http://git-scm.com/docs/gitignore
 
-node_modules/
+# Editor files
+/.idea/
+/.brackets.json
+
+# Cordova folders
+/node_modules/
 /platforms/
 /plugins/
 
@@ -10,6 +15,7 @@ node_modules/
 /www/lib/
 
 # do not commit generated images
-/resources/android
+/resources/android/
+/resources/ios/
 
 *~

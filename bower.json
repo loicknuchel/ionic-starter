@@ -1,10 +1,10 @@
 {
   "name": "ionic-starter",
-  "description": "Start a new ionic project in seconds !",
-  "version": "0.0.1",
-  "homepage": "https://github.com/loicknuchel/ionic-starter",
-  "authors": [ "Loïc Knuchel <loicknuchel@gmail.com>" ],
   "private": "true",
+  "version": "0.0.1",
+  "description": "Start a new ionic project in seconds !",
+  "homepage": "http://example.com.com/",
+  "authors": [ "Your Name Here <you@example.com>" ],
   "main": "www/index.html",
   "keywords": [
     "html5",
@@ -16,17 +16,9 @@
     "ionic"
   ],
   "license": "MIT",
-  "dependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-rc.5",
-    "ngCordova": "~0.1.12-alpha",
-    "font-awesome": "~4.3.0",
-    "angular-localforage": "~1.2.2",
-    "moment": "~2.9.0",
-    "moment-duration-format": "~1.3.0",
-    "lodash": "~3.3.1"
-  },
   "devDependencies": {
-    "angular-mocks": "1.3.6",
-    "angular-scenario": "1.3.6"
+    "ionic": "driftyco/ionic-bower#1.2.0",
+    "lodash": "~3.3.1",
+    "moment": "~2.9.0"
   }
 }
