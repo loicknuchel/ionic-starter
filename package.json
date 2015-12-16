@@ -25,7 +25,5 @@
     "cordova-sqlite-storage",
     "cordova-plugin-inappbrowser"
   ],
-  "cordovaPlatforms": [
-    "android"
-  ]
+  "cordovaPlatforms": []
 }

@@ -31,23 +31,6 @@ To run the app on your android device :
 
 Once again, in one command : `ionic platform add android && ionic resources && ionic run android`
 
-## Main features
-
-- User authentication
-- Storage helpers & caching
-- REST & Parse Api helpers
-- Error handling & async remote logger
-- Angular wrappers & browser mocks for plugins :
-    - [org.apache.cordova.device](https://github.com/apache/cordova-plugin-device) ([ngCordova](http://ngcordova.com/docs/plugins/device/))
-    - [org.apache.cordova.dialogs](https://github.com/apache/cordova-plugin-dialogs) ([ngCordova](http://ngcordova.com/docs/plugins/dialogs/))
-    - [https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin](https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin) ([ngCordova](http://ngcordova.com/docs/plugins/toast/))
-    - [org.apache.cordova.inappbrowser](https://github.com/apache/cordova-plugin-inappbrowser) ([ngCordova](http://ngcordova.com/docs/plugins/inAppBrowser/))
-    - [org.apache.cordova.geolocation](https://github.com/apache/cordova-plugin-geolocation)
-    - [org.apache.cordova.camera](https://github.com/apache/cordova-plugin-camera)
-    - [https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
-    - [org.apache.cordova.media](https://github.com/apache/cordova-plugin-media)
-    - [https://github.com/loicknuchel/cordova-device-accounts](https://github.com/loicknuchel/cordova-device-accounts)
-
 ## Personnalize
 
 As it's only a template project, you may want to change its name. For that, you just have to open :
@@ -60,28 +43,11 @@ As it's only a template project, you may want to change its name. For that, you 
 
 ## Used versions
 
-- Node v0.10.26 (`node -v`)
-- Cordova 4.2.0 (`cordova -version`)
-- Bower 1.3.12 (`bower -v`)
-- Angular 1.3.13 (see bower.json)
-- Ionic 1.0.0-rc.5 (see bower.json)
-
-## TODO
-
-- Mettre en place des analytices (segment.io, google analytics...)
-- tell Ionic CLI to not add empty cordova.js :(
-- improve _log.js : get device uuid instead of userId...
-- Geolocation plugin : check if geolocation is enabled
-- add tests & comments (plugins services & mocks, utils services...) (http://forum.ionicframework.com/t/unit-tests-for-ionic/3711/5)
-- add standard usefull plugins :
-    - http://mcgivery.com/using-custom-url-schemes-ionic-framework-app/
-    - sqlite db (https://blog.nraboy.com/2015/01/deploy-ionic-framework-app-pre-filled-sqlite-db/)
-    - org.apache.cordova.statusbar ([ngCordova](http://ngcordova.com/docs/plugins/statusbar/))
-    - de.appplant.cordova.plugin.local-notification ([ngCordova](http://ngcordova.com/docs/plugins/localNotification/))
-    - webintent
-    - org.apache.cordova.splashscreen ([ngCordova](http://ngcordova.com/docs/plugins/splashscreen/))
-    - https://github.com/pushandplay/cordova-plugin-apprate ([ngCordova](http://ngcordova.com/docs/plugins/appRate/))
-    - https://github.com/whiteoctober/cordova-plugin-app-version ([ngCordova](http://ngcordova.com/docs/plugins/appVersion/))
+- Node v4.2.2 (`node -v`)
+- Cordova 5.4.0 (`cordova -version`)
+- Bower 1.7.0 (`bower -v`)
+- Angular 1.4.3 (see bower.json)
+- Ionic 1.2.0 (see bower.json)
 
 ## Infos
 
