@@ -17,7 +17,6 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
-  <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
   <platform name="android">
     <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
     <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>
@@ -38,4 +37,15 @@
     <splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
     <splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
   </platform>
+  <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
+  <engine name="android" spec="~4.1.1"/>
+  <plugin name="cordova-plugin-device" spec="~1.1.0"/>
+  <plugin name="cordova-plugin-console" spec="~1.0.2"/>
+  <plugin name="cordova-plugin-whitelist" spec="~1.2.0"/>
+  <plugin name="cordova-plugin-splashscreen" spec="~3.0.0"/>
+  <plugin name="cordova-plugin-statusbar" spec="~2.0.0"/>
+  <plugin name="ionic-plugin-keyboard" spec="~1.0.8"/>
+  <plugin name="cordova-plugin-x-toast" spec="~2.3.1"/>
+  <plugin name="cordova-sqlite-storage" spec="~0.7.14"/>
+  <plugin name="cordova-plugin-inappbrowser" spec="~1.1.1"/>
 </widget>
